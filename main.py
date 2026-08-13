@@ -61,3 +61,13 @@ def ingest_game_data(request):
 def health_check(request):
     """Simple HTTP health check for Cloud Functions."""
     return ("OK", 200)
+
+
+# Expose additional function entrypoints defined in other modules so
+# `gcloud functions deploy --entry-point <name>` can find them when the
+# runtime expects a `main.py` in the source directory.
+try:
+    from bq_ingest import bq_ingest as bq_ingest  # type: ignore
+except Exception:
+    # Import errors will surface during deployment/runtime if bq_ingest is required.
+    pass
