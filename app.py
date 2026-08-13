@@ -13,7 +13,8 @@ def health_route():
     return Response(str(body), status=status, mimetype="text/plain")
 
 
-@app.route("/", methods=["GET", "POST"]) @app.route("/ingest", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
+@app.route("/ingest", methods=["GET", "POST"])
 def ingest_route():
     result = bq_ingest(request)
 
