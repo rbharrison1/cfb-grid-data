@@ -30,10 +30,11 @@ jobs:
       - name: Validate Python syntax
         run: python -m py_compile main.py
 
-      - name: Authenticate to Google Cloud
+      - name: Authenticate to Google Cloud (OIDC)
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+          workload_identity_provider: '${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}'
+          service_account: '${{ secrets.GCP_SA_EMAIL }}'
 
       - name: Configure gcloud project
         run: gcloud config set project "${{ secrets.GCP_PROJECT }}"
