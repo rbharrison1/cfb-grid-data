@@ -36,8 +36,11 @@ Raw tables are intentionally untransformed — build views/scheduled queries/dbt
 | `venues` | `venues` | `raw_venues` |
 | `all_games` | `games` (year only) | `raw_all_games` |
 | `win_prob` | `metrics/wp/pregame` (year + week) | `raw_win_prob` |
+| `tv_schedule` | scraped from [fbschedules.com](https://fbschedules.com/college-football-tv-schedule/) (year + week) | `raw_tv_schedule` |
 
-Add new endpoints by adding an entry to the `ENDPOINTS` dict in `bq_ingest.py`.
+Add new CFBD endpoints by adding an entry to the `ENDPOINTS` dict in `bq_ingest.py`.
+
+`tv_schedule` is not a CFBD endpoint — it's scraped from fbschedules.com's TV schedule page as a supplemental source, since CFBD's `games/media` endpoint doesn't cover every game (notably Group of 5 / FCS games on streaming-only outlets). See `fbschedules.py`. It's landed the same way as every other raw table but fetched/parsed separately in `bq_ingest()`, and never fails the rest of the ingest run if the scrape breaks.
 
 ## Usage
 

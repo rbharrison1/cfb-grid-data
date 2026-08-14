@@ -1,5 +1,6 @@
 google-cloud-storage==3.13.1
 google-cloud-bigquery==3.11.0
 requests==2.31.0
+beautifulsoup4==4.12.3
 flask==3.0.3
 gunicorn==22.0.0

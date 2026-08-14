@@ -26,10 +26,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
+          python -m pip install -r transform/requirements.txt
 
       - name: Validate Python syntax
         run: |
           python -m py_compile app.py bq_ingest.py
+          python -m py_compile transform/app.py transform/bq_reader.py transform/bq_transform.py transform/mongo_writer.py transform/time_utils.py
 
       - name: Authenticate to Google Cloud (OIDC)
         uses: google-github-actions/auth@v2
@@ -42,7 +44,7 @@ jobs:
         with:
           project_id: '${{ secrets.GCP_PROJECT }}'
 
-      - name: Deploy to Cloud Run
+      - name: Deploy ingest service to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
         with:
           service: cfb-grid-ingest
@@ -55,4 +57,18 @@ jobs:
             DEFAULT_WEEK=1
           secrets: |
             CFBD_API_KEY=CFBD_API_KEY:latest
-          flags: --allow-unauthenticated
+          flags: --allow-unauthenticated --service-account=${{ secrets.GCP_SA_EMAIL }}
+
+      - name: Deploy transform service to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: cfb-grid-transform
+          region: '${{ secrets.GCP_REGION }}'
+          source: transform
+          env_vars: |
+            BQ_DATASET=${{ secrets.BQ_DATASET }}
+            DEFAULT_YEAR=2025
+            DEFAULT_WEEK=1
+          secrets: |
+            MONGODB_URI=MONGODB_URI:latest
+          flags: --service-account=${{ secrets.GCP_SA_EMAIL }}
