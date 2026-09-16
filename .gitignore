@@ -1,0 +1,6 @@
+.gitignore
+.gcloudignore
+SECRET_SAMPLE.md
+__pycache__/
+*.pyc
+*.pyo
