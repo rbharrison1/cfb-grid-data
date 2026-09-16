@@ -64,6 +64,22 @@ def read_games(client: bigquery.Client, table: str, year: int, week: int) -> pd.
     return _to_dataframe_or_empty(_run(client, sql, year=year, week=week), columns)
 
 
+def read_available_weeks(client: bigquery.Client, table: str, year: int) -> list:
+    """Returns the distinct week numbers actually present in raw_games for a
+    season, sorted ascending -- used by transform's week='all' mode to
+    discover which weeks have been ingested rather than assuming a fixed
+    count (bowls/postseason aren't ingested yet, and not every week may have
+    been landed at any given point in the season)."""
+    sql = f"""
+        SELECT DISTINCT week
+        FROM `{table}`
+        WHERE _year = @year
+        ORDER BY week
+    """
+    rows = _result_or_empty(_run(client, sql, year=year))
+    return [row["week"] for row in rows]
+
+
 def read_media(client: bigquery.Client, table: str, year: int, week: int) -> pd.DataFrame:
     sql = f"""
         SELECT id, outlet
@@ -116,10 +132,19 @@ def read_win_prob(client: bigquery.Client, table: str, year: int, week: int) -> 
     return _to_dataframe_or_empty(_run(client, sql, year=year, week=week), ["gameId", "spread", "homeWinProbability"])
 
 
-def read_playoff_committee_rankings(client: bigquery.Client, table: str, year: int, week: int) -> pd.DataFrame:
-    """Returns a (rank, school) DataFrame for the 'Playoff Committee Rankings' poll
-    of the exact requested year/week. Empty if that poll doesn't exist yet for
-    this week (expected early in the season, before CFP rankings begin)."""
+def read_ap_top25_rankings(client: bigquery.Client, table: str, year: int, week: int) -> pd.DataFrame:
+    """Returns a (rank, school) DataFrame for the 'AP Top 25' poll of the
+    exact requested year/week. Empty (never an error) if that poll doesn't
+    exist yet for this week -- callers should treat that as "no rankings to
+    attach," not a failure.
+
+    CFBD's rankings week numbering matches raw_games' week numbering exactly
+    (both walk the same "week of season" scale, and CFBD has no separate
+    "week 0" for either), so this needs no special-casing for the
+    fbschedules week-0/week-1 merge in bq_ingest.py/fbschedules.py -- the
+    week-1 AP poll (CFBD's earliest available, effectively the preseason
+    poll) is already the correct one for CFBD's merged week=1 games, and
+    week N>=2 maps 1:1 to the week-N poll same as before."""
     sql = f"""
         SELECT polls
         FROM `{table}`
@@ -131,7 +156,7 @@ def read_playoff_committee_rankings(client: bigquery.Client, table: str, year: i
         return pd.DataFrame(columns=["rank", "school"])
 
     polls = rows[0].get("polls") or []
-    target_poll = next((p for p in polls if p.get("poll") == "Playoff Committee Rankings"), None)
+    target_poll = next((p for p in polls if p.get("poll") == "AP Top 25"), None)
     if not target_poll:
         return pd.DataFrame(columns=["rank", "school"])
 

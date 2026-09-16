@@ -3,7 +3,8 @@
 Ported unchanged from cfb-grid-python/mern/python/v2/utils/time_utils.py.
 """
 
-from datetime import datetime, time, timedelta
+from datetime import datetime, time
+from zoneinfo import ZoneInfo
 
 def get_time_window(start_time: str) -> int:
     """
@@ -82,29 +83,37 @@ def get_time_window(start_time: str) -> int:
     window_number = ((total_minutes - base_minutes) // 30) + 1
     return max(1, window_number)  # Ensure we don't return negative or zero
 
+_TIMEZONE_NAMES = {
+    'E': 'America/New_York',
+    'C': 'America/Chicago',
+    'M': 'America/Denver',
+    'P': 'America/Los_Angeles',
+    'A': 'America/Anchorage',
+    'H': 'Pacific/Honolulu',  # no DST
+}
+
+
 def adjust_datetime_for_timezone(date_value, timezone: str) -> datetime:
     """
     Adjust datetime based on timezone.
 
+    Uses IANA tzdata (via zoneinfo) rather than a fixed hour offset, so the
+    conversion is correct on both sides of a DST transition -- a fixed offset
+    (e.g. Eastern always UTC-4) is only right during daylight time; the rest
+    of the year (roughly early Nov to mid-Mar) real Eastern time is UTC-5,
+    and using a fixed -4 there made every game print an hour later than its
+    actual local kickoff.
+
     Args:
-        date_value: ISO format datetime string, OR a datetime/pandas Timestamp --
+        date_value: ISO format datetime string (UTC), OR a datetime/pandas Timestamp --
             BigQuery's schema autodetect infers a TIMESTAMP column for
             CFBD's ISO-8601 startDate field, so to_dataframe() hands back
             an already-parsed (UTC-aware) Timestamp rather than a string.
         timezone (str): Single letter timezone code ('E', 'C', 'M', 'P', 'A', 'H')
 
     Returns:
-        datetime: Adjusted datetime
+        datetime: naive local datetime in the requested zone
     """
-    timezone_offsets = {
-        'E': 4,  # Eastern
-        'C': 5,  # Central
-        'M': 6,  # Mountain
-        'P': 7,  # Pacific
-        'A': 8,  # Alaska
-        'H': 10  # Hawaii
-    }
-
     if isinstance(date_value, str):
         base_dt = datetime.strptime(date_value[:16], '%Y-%m-%dT%H:%M')
     else:
@@ -112,4 +121,7 @@ def adjust_datetime_for_timezone(date_value, timezone: str) -> datetime:
         if base_dt.tzinfo is not None:
             base_dt = base_dt.replace(tzinfo=None)
 
-    return base_dt - timedelta(hours=timezone_offsets.get(timezone, 4))
+    utc_dt = base_dt.replace(tzinfo=ZoneInfo('UTC'))
+    zone_name = _TIMEZONE_NAMES.get(timezone, 'America/New_York')
+    local_dt = utc_dt.astimezone(ZoneInfo(zone_name))
+    return local_dt.replace(tzinfo=None)

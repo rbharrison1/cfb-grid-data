@@ -7,13 +7,21 @@ endpoint directly instead of scraping the rendered page. The endpoint's
 that isn't derivable from a week number alone and changes season to season,
 so it's discovered from the page's week-select dropdown at request time
 rather than hardcoded.
+
+fbschedules.com's own week numbering doesn't line up 1:1 with CFBD's: CFBD
+has no separate "week 0" and folds those season-opener games into its
+week=1 (see _fbschedules_weeks_for_cfbd_week). fetch_tv_schedule() takes and
+tags rows with the CFBD week number, translating internally.
 """
 
 import re
+import time
 from typing import Dict, List, Optional
 
 import requests
 from bs4 import BeautifulSoup
+from requests.adapters import HTTPAdapter
+from urllib3.util import Retry
 
 SCHEDULE_PAGE_URL = "https://fbschedules.com/college-football-tv-schedule/"
 AJAX_URL = "https://fbschedules.com/wp-admin/admin-ajax.php"
@@ -23,12 +31,31 @@ HEADERS = {
     "Accept": "application/json, text/html",
 }
 
+REQUEST_DELAY_SECONDS = 1.0
+
 _WEEK_LABEL_RE = re.compile(r"Week\s+(\d+)", re.IGNORECASE)
+
+
+def _new_session() -> requests.Session:
+    """A plain request occasionally hits a Cloudflare-reset connection
+    (observed in practice, not hypothetical) -- retry transient failures
+    with backoff so one flaky connection doesn't drop a week's TV data from
+    a scheduled ingest run."""
+    session = requests.Session()
+    retry = Retry(
+        total=3,
+        backoff_factor=1,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET"],
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    return session
 
 
 def discover_week_ids(session: Optional[requests.Session] = None) -> Dict[int, str]:
     """Returns {week_number: schedule-week-id} by reading the page's week dropdown."""
-    sess = session or requests
+    sess = session or _new_session()
     resp = sess.get(SCHEDULE_PAGE_URL, headers=HEADERS, timeout=30)
     resp.raise_for_status()
 
@@ -101,16 +128,20 @@ def _parse_table(table, date: Optional[str], year: int, week: int) -> List[dict]
     return games
 
 
-def fetch_tv_schedule(
-    year: int, week: int, session: Optional[requests.Session] = None, week_ids: Optional[Dict[int, str]] = None
-) -> List[dict]:
-    """Fetches and parses the TV schedule for a single CFBD week number."""
-    sess = session or requests.Session()
-    week_ids = week_ids if week_ids is not None else discover_week_ids(sess)
-    week_id = week_ids.get(week)
-    if week_id is None:
-        raise ValueError(f"No fbschedules.com week id found for week {week} (available: {sorted(week_ids)})")
+def _fbschedules_weeks_for_cfbd_week(cfbd_week: int) -> List[int]:
+    """Maps a CFBD week number to the fbschedules.com week label(s) that
+    cover it.
 
+    CFBD has no separate "week 0" -- verified against live 2026 data that
+    CFBD's week=1 games span fbschedules.com's own "Week 0" (Aug 27-29)
+    through "Week 1" (Sept 3-7) combined into one bucket. Every other CFBD
+    week number maps 1:1 to the identically-numbered fbschedules week."""
+    if cfbd_week == 1:
+        return [0, 1]
+    return [cfbd_week]
+
+
+def _fetch_one_fbschedules_week(year: int, cfbd_week: int, week_id: str, sess: requests.Session) -> List[dict]:
     params = {
         "action": "load_fbschedules_ajax",
         "type": "NCAA",
@@ -131,15 +162,44 @@ def fetch_tv_schedule(
     resp = sess.get(AJAX_URL, params=params, headers=HEADERS, timeout=30)
     resp.raise_for_status()
     payload = resp.json()
-    return _parse_schedule_html(payload.get("html", ""), year, week)
+    # Rows are tagged with the *CFBD* week number (not fbschedules' own label)
+    # so bq_reader's `WHERE week = @week` lines up with CFBD's raw_games.
+    return _parse_schedule_html(payload.get("html", ""), year, cfbd_week)
+
+
+def fetch_tv_schedule(
+    year: int, week: int, session: Optional[requests.Session] = None, week_ids: Optional[Dict[int, str]] = None
+) -> List[dict]:
+    """Fetches and parses the TV schedule for a single CFBD week number."""
+    sess = session or _new_session()
+    resolved_week_ids = week_ids if week_ids is not None else discover_week_ids(sess)
+
+    rows = []
+    for fb_week in _fbschedules_weeks_for_cfbd_week(week):
+        week_id = resolved_week_ids.get(fb_week)
+        if week_id is None:
+            raise ValueError(
+                f"No fbschedules.com week id found for week {fb_week} (available: {sorted(resolved_week_ids)})"
+            )
+        rows.extend(_fetch_one_fbschedules_week(year, week, week_id, sess))
+    return rows
 
 
 def fetch_full_season(year: int, session: Optional[requests.Session] = None) -> List[dict]:
-    """Fetches and parses every week of the season in one call each."""
-    sess = session or requests.Session()
-    week_ids = discover_week_ids(sess)
+    """Fetches and parses every week of the season, one request per CFBD
+    week number (week=1 makes two requests internally -- see
+    _fbschedules_weeks_for_cfbd_week).
+
+    Only used for one-off 'week=all' backfill runs, not the normal weekly
+    ingest -- paced with a small delay between requests to stay a polite
+    scraper rather than firing requests back-to-back."""
+    sess = session or _new_session()
+    fb_week_ids = discover_week_ids(sess)
+    cfbd_weeks = sorted({1 if w == 0 else w for w in fb_week_ids})
 
     rows = []
-    for week in sorted(week_ids):
-        rows.extend(fetch_tv_schedule(year, week, session=sess, week_ids=week_ids))
+    for i, week in enumerate(cfbd_weeks):
+        if i > 0:
+            time.sleep(REQUEST_DELAY_SECONDS)
+        rows.extend(fetch_tv_schedule(year, week, session=sess, week_ids=fb_week_ids))
     return rows

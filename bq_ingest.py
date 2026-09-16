@@ -81,6 +81,27 @@ def _load_gcs_to_bq(client: bigquery.Client, gcs_uri: str, table_id: str) -> int
     return table.num_rows
 
 
+def _strip_empty(value):
+    """Recursively drops dict keys whose value is None or an empty list.
+
+    BigQuery's load-job autodetect has no type info for an all-null/all-empty
+    column and falls back to STRING, which then permanently locks that
+    column's type in the table schema (WRITE_APPEND can add new columns via
+    ALLOW_FIELD_ADDITION, but can't widen an existing one). CFBD's game rows
+    are null for every post-game stat field (scores, elo, win probability,
+    line scores, etc.) until a game actually finishes, which silently broke
+    raw_games/raw_all_games/raw_records loads for days once real values
+    started appearing -- see cfb-grid-data's CLAUDE.md. Dropping the key
+    entirely instead of leaving it as an explicit null means a field with no
+    real value anywhere in a batch never gets typed at all, so it's added
+    fresh (with the correct type) the first time real data shows up."""
+    if isinstance(value, dict):
+        return {k: _strip_empty(v) for k, v in value.items() if v is not None and v != []}
+    if isinstance(value, list):
+        return [_strip_empty(v) for v in value]
+    return value
+
+
 def _land_and_load_rows(
     storage_client: storage.Client,
     bq_client: bigquery.Client,
@@ -101,6 +122,7 @@ def _land_and_load_rows(
     if not rows:
         return {"rows_loaded": 0}
 
+    rows = [_strip_empty(row) if isinstance(row, dict) else row for row in rows]
     for row in rows:
         if isinstance(row, dict):
             row["_ingested_at"] = ingested_at
@@ -154,7 +176,12 @@ def bq_ingest(request):
     request_args = request.args or {}
 
     def _param(name, default=None):
-        return request_args.get(name) or request_json.get(name) or default
+        # 'or' chaining would treat week=0 (a real CFB week) as "not provided"
+        # and silently fall through to the default -- check for None explicitly.
+        value = request_args.get(name)
+        if value is None:
+            value = request_json.get(name)
+        return default if value is None else value
 
     year = int(_param("year", os.environ.get("DEFAULT_YEAR", 2025)))
     week_param = str(_param("week", os.environ.get("DEFAULT_WEEK", 1)))

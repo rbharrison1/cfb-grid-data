@@ -21,7 +21,9 @@ def write_to_mongodb(uri: str, db_name: str, collection_name: str,
         year (int): Season year
         week (int): Week number
         timezone (str): Timezone code
-        overwrite (bool): If True, delete existing data first. If False, append to existing data.
+        overwrite (bool): If True, delete existing non-completed data for this
+            slot first (games already stored as completed are frozen and
+            left untouched -- see below). If False, append to existing data.
 
     Returns:
         List[Dict[str, Any]]: Copy of the inserted data with MongoDB IDs removed
@@ -45,21 +47,18 @@ def write_to_mongodb(uri: str, db_name: str, collection_name: str,
 
         deleted_count = 0
         if overwrite:
-            # Delete existing records that match season, week, away_team, and home_team from new data
-            delete_conditions = []
-            for game in data:
-                if 'away_team' in game and 'home_team' in game:
-                    delete_conditions.append({
-                        'season': year,
-                        'week': week,
-                        'away_team': game['away_team'],
-                        'home_team': game['home_team'],
-                        'timezone': game['timezone']
-                    })
+            slot_filter = {'season': year, 'week': week, 'timezone': timezone}
 
-            if delete_conditions:
-                delete_result = collection.delete_many({'$or': delete_conditions})
-                deleted_count = delete_result.deleted_count
+            # A game already stored as completed is frozen: never deleted,
+            # never reinserted, regardless of what this run recomputed for
+            # it. Only clear the not-yet-completed docs in this slot, not
+            # just ones matching games present in the new data -- so a game
+            # that drops out of this run (e.g. loses its outlet) gets
+            # cleaned up instead of left behind as a stale record.
+            frozen_ids = set(collection.distinct('game_id', {**slot_filter, 'completed': True}))
+            delete_result = collection.delete_many({**slot_filter, 'completed': {'$ne': True}})
+            deleted_count = delete_result.deleted_count
+            data = [g for g in data if g.get('game_id') not in frozen_ids]
 
         # Insert new data and get inserted IDs
         if data:

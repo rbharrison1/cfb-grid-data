@@ -29,18 +29,25 @@ NETWORK_COLUMNS = {
     'BIG12|ESPN+': 18,
     'HBCUGo': 18,
     'Flo': 18,
-    'MWN': 18
+    'MWN': 18,
+    'MNMT': 18,
+    'MidCo+': 18,
+    'YouTube': 18,
+    'ACCNX': 18,
+    'SECN+': 18
 }
 
 NETWORK_DISPLAY_MAPPINGS = {
     'ACC Network': 'ACCN',
     'SEC Network': 'SECN',
     'The CW Network': 'CW NETWORK',
+    'The CW': 'CW NETWORK',
     'BIG12|ESPN+': 'ESPN+',
     'HBCU Go':'HBCUGo',
     'HBCU GO':'HBCUGo',
     'FloSports':'Flo',
     'MW Network':'MWN',
     'USA Net': 'USA',
-    'USA NETWORK': 'USA'
+    'USA NETWORK': 'USA',
+    'MidCoSports+': 'MidCo+',
 }
