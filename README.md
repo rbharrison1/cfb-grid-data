@@ -137,6 +137,8 @@ Production runs two Cloud Scheduler jobs against these two services:
 - `cfb-grid-daily-ingest` — once daily, `week=all`, against `/ingest` on the ingest service.
 - `cfb-grid-daily-transform-week-01` through `-15` — once daily, staggered a couple minutes apart, one `/transform` call per week against the transform service (see [Transform service](#transform-service) for why it's split into 15 jobs instead of one `week=all` job).
 
+For manually triggering a run against the live production services right now (real URLs/job names, no placeholders), see `RUNBOOK.md`.
+
 Example job creation:
 
 ```bash
