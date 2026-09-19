@@ -405,4 +405,7 @@ TEAM_NAME_SUBSTITUTIONS = {
     'Western Connecticut State': 'W. Connecticut St.',
     'Southeastern Oklahoma State': 'SE Oklahoma St.',
     'Wisconsin Lutheran': 'WI-Lutheran',
+    'Wisconsin Platteville': 'WI-Platteville',
+    'Wisconsin La Crosse': 'WI-La Crosse',
+    'Elgin':'Judson'
 }
