@@ -4,7 +4,25 @@ against Mongo's stored away_team/home_team, and the live-field extraction
 from a matched NCAA game dict.
 """
 
-from team_match import NCAA_NAME_ALIASES, match_ncaa_games
+from team_match import NCAA_NAME_ALIASES, match_ncaa_games, get_already_final_game_ids
+
+
+class FakeCollection:
+    """Minimal stand-in for pymongo.collection.Collection.find(), just
+    enough to exercise get_already_final_game_ids()'s filter/projection
+    usage (mirrors test_current_week.py's FakeCollection)."""
+
+    def __init__(self, docs):
+        self._docs = docs
+
+    def find(self, query, projection):
+        return [
+            {"game_id": d["game_id"]}
+            for d in self._docs
+            if d.get("season") == query.get("season")
+            and d.get("timezone") == query.get("timezone")
+            and d.get("live_status") == query.get("live_status")
+        ]
 
 
 def _ncaa_game(away_short, home_short, away_score="7", home_score="14",
@@ -112,6 +130,15 @@ def test_pair_disambiguates_a_team_playing_at_a_different_site():
     assert {m["game_id"] for m in matched} == {101, 202}
 
 
+def test_get_already_final_game_ids_only_returns_final_in_this_season():
+    collection = FakeCollection([
+        {"game_id": 101, "season": 2026, "timezone": "E", "live_status": "final"},
+        {"game_id": 202, "season": 2026, "timezone": "E", "live_status": "live"},
+        {"game_id": 303, "season": 2025, "timezone": "E", "live_status": "final"},
+    ])
+    assert get_already_final_game_ids(collection, 2026) == {101}
+
+
 if __name__ == "__main__":
     test_exact_name_match()
     test_resolves_via_team_name_substitutions()
@@ -119,6 +146,7 @@ if __name__ == "__main__":
     test_unmatched_game_is_skipped_not_guessed()
     test_live_fields_extracted_from_matched_game()
     test_unparseable_score_becomes_none_not_an_error()
+    test_get_already_final_game_ids_only_returns_final_in_this_season()
     test_reversed_away_home_pair_still_matches()
     test_pair_disambiguates_a_team_playing_at_a_different_site()
     print("All team_match tests passed.")

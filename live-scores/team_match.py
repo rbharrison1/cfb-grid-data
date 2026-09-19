@@ -144,6 +144,26 @@ def build_game_lookup(collection, season: int) -> Dict[Tuple[str, str], int]:
     }
 
 
+def get_already_final_game_ids(collection, season: int) -> Set[int]:
+    """game_ids whose live_status is already 'final' in Mongo.
+
+    Used to stop re-patching a game every poll once its final result has
+    already been recorded once -- nothing about a finished game changes
+    again, so continuing to match/patch it every cycle (as originally
+    happened: a game sitting at "final" got re-written every single minute
+    for the rest of the scheduler window) is pure waste. A game whose NCAA
+    state is "final" but isn't in this set yet still gets patched once, to
+    actually record the transition into final -- only the *second* and
+    later "final" pass for the same game_id gets skipped (see app.py's
+    filter on the matched list).
+    """
+    docs = collection.find(
+        {"season": season, "timezone": "E", "live_status": "final"},
+        {"game_id": 1, "_id": 0},
+    )
+    return {d["game_id"] for d in docs if "game_id" in d}
+
+
 def _resolve_mongo_name(ncaa_name: Optional[str], mongo_names: Set[str]) -> Optional[str]:
     if not ncaa_name:
         return None
