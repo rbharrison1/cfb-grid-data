@@ -4482,6 +4482,14 @@
     ]
   },
   {
+    "canonical_name": "WI-Whitewater",
+    "espn_id": 2745,
+    "color": "#502D7F",
+    "aliases": [
+      "Wisconsin Whitewater"
+    ]
+  },
+  {
     "canonical_name": "WPI",
     "espn_id": 2749,
     "color": "#AC2B37",
@@ -4526,6 +4534,14 @@
     "aliases": []
   },
   {
+    "canonical_name": "Wash. & Jeff.",
+    "espn_id": 2686,
+    "color": "#000000",
+    "aliases": [
+      "Washington & Jefferson"
+    ]
+  },
+  {
     "canonical_name": "Wash. St. Louis",
     "espn_id": 143,
     "color": "#A51417",
@@ -4544,12 +4560,6 @@
     "canonical_name": "Washington",
     "espn_id": 264,
     "color": "#4B2E83",
-    "aliases": []
-  },
-  {
-    "canonical_name": "Washington & Jefferson",
-    "espn_id": 2686,
-    "color": "#A4343A",
     "aliases": []
   },
   {
@@ -4826,12 +4836,6 @@
     "canonical_name": "Wisconsin Stout",
     "espn_id": 2744,
     "color": "#012169",
-    "aliases": []
-  },
-  {
-    "canonical_name": "Wisconsin Whitewater",
-    "espn_id": 2745,
-    "color": "#502D7F",
     "aliases": []
   },
   {
