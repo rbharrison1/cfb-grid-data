@@ -31,7 +31,7 @@ Raw tables are intentionally untransformed — the `transform/` service (see [be
 - `Dockerfile` - container image used for the ingest Cloud Run deploy.
 - `requirements.txt` - Python dependencies.
 - `.gcloudignore` / `.dockerignore` - files excluded from gcloud/Docker builds.
-- `.github/workflows/deploy.yml` - **currently non-functional** (see [Deployment](#deployment)); intended to deploy the ingest container to Cloud Run on push to `main`.
+- `.github/workflows/deploy.yml` - deploys the ingest container to Cloud Run on push to `main` (see [Deployment](#deployment)); OIDC auth was broken but was fixed prior to 2026-09-22.
 - `transform/` - the second stage; its own Cloud Run service, README-documented [below](#transform-service).
 
 ## Endpoints ingested
@@ -87,7 +87,7 @@ python app.py
 
 ## Deployment
 
-**Deploys are currently manual.** `.github/workflows/deploy.yml` is set up to build and deploy via Workload Identity Federation (OIDC) on push to `main`, but its OIDC auth is currently broken and the workflow does not successfully deploy — don't rely on a push to `main` reaching production. Until that's fixed, deploy by hand from the repo root (ingest) and from `transform/` (transform service, see [below](#transform-service)):
+**Deploys auto-run via GitHub Actions on push to `main`.** `.github/workflows/deploy.yml` builds and deploys via Workload Identity Federation (OIDC); its OIDC auth was broken but was fixed prior to 2026-09-22. Manual deploy from the repo root (ingest) and from `transform/` (transform service, see [below](#transform-service)) still works as a fallback:
 
 ```bash
 gcloud run deploy cfb-grid-ingest \
@@ -153,7 +153,7 @@ gcloud scheduler jobs create http cfb-grid-daily-ingest \
 
 ### GitHub Actions CI/CD
 
-`.github/workflows/deploy.yml` is intended to build and deploy the ingest container to Cloud Run on push to `main`, but its OIDC auth is currently broken (see [Deployment](#deployment)) — it does not currently deploy anything. If/when it's fixed, it expects these repository secrets:
+`.github/workflows/deploy.yml` builds and deploys the ingest container to Cloud Run on push to `main` (its OIDC auth was broken, but was fixed prior to 2026-09-22 — see [Deployment](#deployment)). It expects these repository secrets:
 
 - `WORKLOAD_IDENTITY_PROVIDER` - full resource name of the Workload Identity Federation provider.
 - `GCP_SA_EMAIL` - service account email the workflow impersonates via OIDC.
@@ -177,8 +177,8 @@ Reads the `raw_*` BigQuery tables ingest lands, merges/enriches them (outlet/dat
 - `bq_transform.py` - merge/format logic; ported from `cfb-grid-python`'s `generate_sched.py`.
 - `tv_schedule_match.py` - matches fbschedules.com rows to CFBD games by team name, surfacing fbschedules' outlet/date/time as overlay dicts keyed by CFBD game id (CFBD's own data is the fallback, applied in `bq_transform.py`).
 - `mongo_writer.py` - writes final game documents to MongoDB (delete-then-insert per `(season, week, timezone)` on overwrite).
-- `config/networks.py`, `config/teams.py` - network/team display-name and grid-column mapping tables.
-- `colors.csv` - team color lookup, bundled into the image.
+- `config/networks.py` - network display-name and grid-column mapping table.
+- `config/teams.py`, `config/teams.json` - team display-name/alias/color lookup, generated from `../team_data/teams.json` — see `../team_data/README.md`. Do not hand-edit either file.
 
 ### Usage
 

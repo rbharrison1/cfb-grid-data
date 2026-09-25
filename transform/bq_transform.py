@@ -9,7 +9,6 @@ single camelCase shape instead of the legacy dual snake_case/camelCase
 fallback (BigQuery only ever produces one shape).
 """
 
-import os
 import re
 from collections import defaultdict
 from datetime import datetime, time
@@ -20,23 +19,18 @@ import pandas as pd
 
 import tv_schedule_match
 from config.networks import NETWORK_COLUMNS, NETWORK_DISPLAY_MAPPINGS
-from config.teams import TEAM_NAME_SUBSTITUTIONS
+from config.teams import TEAM_NAME_SUBSTITUTIONS, TEAM_COLORS
 from time_utils import get_time_window, adjust_datetime_for_timezone
 
 TIMEZONES = ['E', 'C', 'M', 'P', 'A', 'H']
 
 
-def load_colors() -> Dict[int, str]:
-    """Load team colors from the colors.csv bundled into the image."""
-    colors_path = os.path.join(os.path.dirname(__file__), 'colors.csv')
-    colors = {}
-    with open(colors_path) as f:
-        for line in f:
-            parts = line.strip().split(',')
-            if len(parts) >= 3:
-                team_id = int(os.path.basename(parts[1]).replace('.png', ''))
-                colors[team_id] = parts[2]
-    return colors
+def load_colors() -> Dict[str, str]:
+    """Team colors keyed by canonical team name (already run through
+    TEAM_NAME_SUBSTITUTIONS -- see team_data/README.md in the repo root).
+    Sourced from config/teams.py, itself generated from
+    team_data/teams.json; never hand-edited directly."""
+    return TEAM_COLORS
 
 
 def get_team_schedule(all_games: List[dict], team_name: str) -> List[Dict[str, Any]]:
@@ -457,8 +451,11 @@ def build_merged_dataframe(games_df, media_df, tv_df, venues_df, rankings_df, re
         games_df, media_df, tv_df, venues_df, rankings_df, records_df, win_prob_df
     )
     merged = apply_display_mappings(merged)
-    merged['awayColor'] = merged['awayId'].map(colors)
-    merged['homeColor'] = merged['homeId'].map(colors)
+    # colors is now keyed by canonical team name (see load_colors()) -- must run
+    # after apply_display_mappings, which substitutes awayTeam/homeTeam to their
+    # canonical form in place.
+    merged['awayColor'] = merged['awayTeam'].map(colors)
+    merged['homeColor'] = merged['homeTeam'].map(colors)
     return merged, unmatched_tv_rows
 
 

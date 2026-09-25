@@ -1,0 +1,4890 @@
+[
+  {
+    "canonical_name": "Abilene Chr.",
+    "espn_id": 2000,
+    "color": "#4E2683",
+    "aliases": [
+      "Abilene Christian"
+    ]
+  },
+  {
+    "canonical_name": "Adams State",
+    "espn_id": 2001,
+    "color": "#124734",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Adrian",
+    "espn_id": 2003,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Air Force",
+    "espn_id": 2005,
+    "color": "#003087",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Akron",
+    "espn_id": 2006,
+    "color": "#041E42",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Alabama",
+    "espn_id": 333,
+    "color": "#9E1B32",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Alabama A&M",
+    "espn_id": 2010,
+    "color": "#660000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Alabama St.",
+    "espn_id": 2011,
+    "color": "#C99700",
+    "aliases": [
+      "Alabama State"
+    ]
+  },
+  {
+    "canonical_name": "Albany",
+    "espn_id": 399,
+    "color": "#46166B",
+    "aliases": [
+      "UAlbany"
+    ]
+  },
+  {
+    "canonical_name": "Albany St. (GA)",
+    "espn_id": 2013,
+    "color": "#0033A0",
+    "aliases": [
+      "Albany State",
+      "Albany State (GA)",
+      "Albany State GA"
+    ]
+  },
+  {
+    "canonical_name": "Albion",
+    "espn_id": 2790,
+    "color": "#512D6D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Albright",
+    "espn_id": 2015,
+    "color": "#BA0C2F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Alcorn St.",
+    "espn_id": 2016,
+    "color": "#46166A",
+    "aliases": [
+      "Alcorn State"
+    ]
+  },
+  {
+    "canonical_name": "Alderson-Broaddus",
+    "espn_id": 2017,
+    "color": "#003865",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Alfred",
+    "espn_id": 365,
+    "color": "#550D8A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Alfred State",
+    "espn_id": 3162,
+    "color": "#003C71",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Allegheny",
+    "espn_id": 2018,
+    "color": "#0C2340",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Allen",
+    "espn_id": 2019,
+    "color": "#025399",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Alma",
+    "espn_id": 2800,
+    "color": "#862633",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Alvernia",
+    "espn_id": 111674,
+    "color": "#9B2743",
+    "aliases": []
+  },
+  {
+    "canonical_name": "American Int'l",
+    "espn_id": 2022,
+    "color": "#FFB60F",
+    "aliases": [
+      "American International"
+    ]
+  },
+  {
+    "canonical_name": "Amherst College",
+    "espn_id": 7,
+    "color": "#3F1F69",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Anderson (IN)",
+    "espn_id": 2023,
+    "color": "#FE5000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Anderson (SC)",
+    "espn_id": 129469,
+    "color": "#010101",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Andrew",
+    "espn_id": 134002,
+    "color": null,
+    "aliases": []
+  },
+  {
+    "canonical_name": "Angelo St.",
+    "espn_id": 2025,
+    "color": "#245397",
+    "aliases": [
+      "Angelo State"
+    ]
+  },
+  {
+    "canonical_name": "Appalachian St.",
+    "espn_id": 2026,
+    "color": "#000000",
+    "aliases": [
+      "App State",
+      "Appalachian State"
+    ]
+  },
+  {
+    "canonical_name": "Apprentice School",
+    "espn_id": 3111,
+    "color": "#7D2248",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Arizona",
+    "espn_id": 12,
+    "color": "#0C234B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Arizona St.",
+    "espn_id": 9,
+    "color": "#8C1D40",
+    "aliases": [
+      "Arizona State"
+    ]
+  },
+  {
+    "canonical_name": "Ark. Baptist",
+    "espn_id": 124386,
+    "color": "#3F2177",
+    "aliases": [
+      "Arkansas Baptist",
+      "Little Rock"
+    ]
+  },
+  {
+    "canonical_name": "Ark.-Pine Bluff",
+    "espn_id": 2029,
+    "color": "#000000",
+    "aliases": [
+      "Arkansas-Pine Bluff"
+    ]
+  },
+  {
+    "canonical_name": "Arkansas",
+    "espn_id": 8,
+    "color": "#9D2235",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Arkansas Monticello",
+    "espn_id": 2028,
+    "color": "#00965E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Arkansas St.",
+    "espn_id": 2032,
+    "color": "#CC092F",
+    "aliases": [
+      "Arkansas State"
+    ]
+  },
+  {
+    "canonical_name": "Arkansas Tech",
+    "espn_id": 2033,
+    "color": "#115740",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Army",
+    "espn_id": 349,
+    "color": "#D4BF91",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ashland",
+    "espn_id": 308,
+    "color": "#5C068C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Assumption",
+    "espn_id": 2038,
+    "color": "#005B99",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Auburn",
+    "espn_id": 2,
+    "color": "#03244d",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Augsburg",
+    "espn_id": 124,
+    "color": "#75263B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Augustana (IL)",
+    "espn_id": 2042,
+    "color": "#002F6C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Augustana (SD)",
+    "espn_id": 2043,
+    "color": "#002D62",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Aurora",
+    "espn_id": 2044,
+    "color": "#003591",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Austin",
+    "espn_id": 2045,
+    "color": "#9D2235",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Austin Peay",
+    "espn_id": 2046,
+    "color": "#BA0C2F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Averett",
+    "espn_id": 2047,
+    "color": "#0C2340",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Azusa Pacific",
+    "espn_id": 2049,
+    "color": "#990000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "BYU",
+    "espn_id": 252,
+    "color": "#002E5D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Baldwin Wallace",
+    "espn_id": 188,
+    "color": "#4E3629",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ball St.",
+    "espn_id": 2050,
+    "color": "#BA0C2F",
+    "aliases": [
+      "Ball State"
+    ]
+  },
+  {
+    "canonical_name": "Barton",
+    "espn_id": 122666,
+    "color": "#18468B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bates",
+    "espn_id": 121,
+    "color": "#B30838",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Baylor",
+    "espn_id": 239,
+    "color": "#154734",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Belhaven",
+    "espn_id": 2056,
+    "color": "#1D3C34",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Beloit",
+    "espn_id": 266,
+    "color": "#003865",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bemidji State",
+    "espn_id": 132,
+    "color": "#004D44",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Benedict Coll.",
+    "espn_id": 490,
+    "color": "#FFC301",
+    "aliases": [
+      "Benedict",
+      "Benedict College"
+    ]
+  },
+  {
+    "canonical_name": "Benedictine (IL)",
+    "espn_id": 2283,
+    "color": "#BA0C2F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bentley",
+    "espn_id": 2060,
+    "color": "#1B5FAA",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Berry",
+    "espn_id": 2757,
+    "color": "#00205B",
+    "aliases": [
+      "Berry College"
+    ]
+  },
+  {
+    "canonical_name": "Bethany (WV)",
+    "espn_id": 2062,
+    "color": "#115740",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bethel (MN)",
+    "espn_id": 2802,
+    "color": "#002F5F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bethel (TN)",
+    "espn_id": 2064,
+    "color": "#5F249F",
+    "aliases": [
+      "Bethel University Tennessee"
+    ]
+  },
+  {
+    "canonical_name": "Bethune-Cookman",
+    "espn_id": 2065,
+    "color": "#6F263D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Black Hills State",
+    "espn_id": 2069,
+    "color": "#006233",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bloomsburg",
+    "espn_id": 2071,
+    "color": "#6E121E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bluefield",
+    "espn_id": 495,
+    "color": "#071D49",
+    "aliases": [
+      "BLUEFIELD"
+    ]
+  },
+  {
+    "canonical_name": "Bluefield St.",
+    "espn_id": 124180,
+    "color": "#13294B",
+    "aliases": [
+      "Bluefield State"
+    ]
+  },
+  {
+    "canonical_name": "Bluffton",
+    "espn_id": 2074,
+    "color": "#512D6D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Boise St.",
+    "espn_id": 68,
+    "color": "#0033A0",
+    "aliases": [
+      "Boise State"
+    ]
+  },
+  {
+    "canonical_name": "Boston College",
+    "espn_id": 103,
+    "color": "#8a100b",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bowdoin",
+    "espn_id": 340,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bowie St.",
+    "espn_id": 2075,
+    "color": "#1D252C",
+    "aliases": [
+      "Bowie State"
+    ]
+  },
+  {
+    "canonical_name": "Bowling Green",
+    "espn_id": 189,
+    "color": "#FF7300",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Brevard",
+    "espn_id": 2913,
+    "color": "#003A70",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bridgewater",
+    "espn_id": 2079,
+    "color": "#9D2235",
+    "aliases": [
+      "Bridgewater (VA)"
+    ]
+  },
+  {
+    "canonical_name": "Bridgewater State",
+    "espn_id": 18,
+    "color": "#A6192E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Brockport",
+    "espn_id": 2781,
+    "color": "#00533E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Brown",
+    "espn_id": 225,
+    "color": "#381C00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bryant",
+    "espn_id": 2803,
+    "color": "#B09863",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Bucknell",
+    "espn_id": 2083,
+    "color": "#EF5B0C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Buena Vista",
+    "espn_id": 63,
+    "color": "#0C2340",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Buffalo",
+    "espn_id": 2084,
+    "color": "#005bbb",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Buffalo State",
+    "espn_id": 2085,
+    "color": "#CC6600",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Butler",
+    "espn_id": 2086,
+    "color": "#13294B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "C. Arkansas",
+    "espn_id": 2110,
+    "color": "#4F2D7F",
+    "aliases": [
+      "Central Arkansas"
+    ]
+  },
+  {
+    "canonical_name": "C. Carolina",
+    "espn_id": 324,
+    "color": "#006F71",
+    "aliases": [
+      "Coastal Carolina"
+    ]
+  },
+  {
+    "canonical_name": "C. Connecticut",
+    "espn_id": 2115,
+    "color": "#1A4784",
+    "aliases": [
+      "Central Connecticut"
+    ]
+  },
+  {
+    "canonical_name": "C. Michigan",
+    "espn_id": 2117,
+    "color": "#6A0032",
+    "aliases": [
+      "Central Michigan"
+    ]
+  },
+  {
+    "canonical_name": "C. Washington",
+    "espn_id": 2120,
+    "color": "#AB0032",
+    "aliases": [
+      "Central Washington"
+    ]
+  },
+  {
+    "canonical_name": "CSU Pueblo",
+    "espn_id": 2570,
+    "color": "#00396A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Cal Lutheran",
+    "espn_id": 2094,
+    "color": "#2E1A47",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Cal Poly",
+    "espn_id": 13,
+    "color": "#003831",
+    "aliases": []
+  },
+  {
+    "canonical_name": "California",
+    "espn_id": 25,
+    "color": "#FDB515",
+    "aliases": []
+  },
+  {
+    "canonical_name": "California (PA)",
+    "espn_id": 2858,
+    "color": "#DA291C",
+    "aliases": [
+      "PennWest California"
+    ]
+  },
+  {
+    "canonical_name": "Calvin",
+    "espn_id": 129738,
+    "color": "#93282C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Campbell",
+    "espn_id": 2097,
+    "color": "#E87722",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Capital",
+    "espn_id": 424,
+    "color": "#330072",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Carleton",
+    "espn_id": 2101,
+    "color": "#0B5091",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Carnegie Mellon",
+    "espn_id": 2102,
+    "color": "#990000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Carroll (WI)",
+    "espn_id": 32,
+    "color": "#E35205",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Carson-Newman",
+    "espn_id": 2105,
+    "color": "#FF671F",
+    "aliases": [
+      "Carson Newman"
+    ]
+  },
+  {
+    "canonical_name": "Carthage",
+    "espn_id": 2106,
+    "color": "#D72316",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Case Western",
+    "espn_id": 2963,
+    "color": "#626262",
+    "aliases": [
+      "Case Western Reserve"
+    ]
+  },
+  {
+    "canonical_name": "Catawba",
+    "espn_id": 2107,
+    "color": "#13294E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Catholic",
+    "espn_id": 2108,
+    "color": "#990000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Centenary (LA)",
+    "espn_id": 101442,
+    "color": "#8A2432",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Central College",
+    "espn_id": 2964,
+    "color": "#E4002B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Central Methodist",
+    "espn_id": 2860,
+    "color": "#006341",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Central Missouri",
+    "espn_id": 2118,
+    "color": "#CF202E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Central Oklahoma",
+    "espn_id": 2122,
+    "color": "#003366",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Central St.",
+    "espn_id": 2119,
+    "color": "#46132D",
+    "aliases": [
+      "Central State"
+    ]
+  },
+  {
+    "canonical_name": "Centre",
+    "espn_id": 2121,
+    "color": "#FFCC00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Cetys University",
+    "espn_id": 134180,
+    "color": null,
+    "aliases": []
+  },
+  {
+    "canonical_name": "Chadron St.",
+    "espn_id": 2123,
+    "color": "#660033",
+    "aliases": [
+      "Chadron St",
+      "Chadron State"
+    ]
+  },
+  {
+    "canonical_name": "Chapman",
+    "espn_id": 411,
+    "color": "#862633",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Charleston (WV)",
+    "espn_id": 2128,
+    "color": "#992244",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Charleston So.",
+    "espn_id": 2127,
+    "color": "#002855",
+    "aliases": [
+      "Charleston Southern"
+    ]
+  },
+  {
+    "canonical_name": "Charlotte",
+    "espn_id": 2429,
+    "color": "#005035",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Chattanooga",
+    "espn_id": 236,
+    "color": "#00386B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Chicago",
+    "espn_id": 80,
+    "color": "#800000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Chicago St.",
+    "espn_id": 2130,
+    "color": "#115740",
+    "aliases": [
+      "Chicago State"
+    ]
+  },
+  {
+    "canonical_name": "Chowan",
+    "espn_id": 2804,
+    "color": "#003087",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Chris. Newport",
+    "espn_id": 3112,
+    "color": "#0039A6",
+    "aliases": [
+      "Christopher Newport"
+    ]
+  },
+  {
+    "canonical_name": "Cincinnati",
+    "espn_id": 2132,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Cl.-Mudd-Scripps",
+    "espn_id": 17,
+    "color": "#862633",
+    "aliases": [
+      "Claremont",
+      "Claremont Mudd Scripps"
+    ]
+  },
+  {
+    "canonical_name": "Clarion",
+    "espn_id": 2134,
+    "color": "#003366",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Clark Atlanta",
+    "espn_id": 2805,
+    "color": "#C8102E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Clemson",
+    "espn_id": 228,
+    "color": "#F56600",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Coast Guard",
+    "espn_id": 2557,
+    "color": "#CC0000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Coe",
+    "espn_id": 2141,
+    "color": "#93282C",
+    "aliases": [
+      "Coe College"
+    ]
+  },
+  {
+    "canonical_name": "Colby",
+    "espn_id": 33,
+    "color": "#002878",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Colgate",
+    "espn_id": 2142,
+    "color": "#862633",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Colorado",
+    "espn_id": 38,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Colorado College",
+    "espn_id": 2144,
+    "color": "#EFAB1E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Colorado Mesa",
+    "espn_id": 11,
+    "color": "#860037",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Colorado School of Mines",
+    "espn_id": 2146,
+    "color": "#21314D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Colorado St.",
+    "espn_id": 36,
+    "color": "#1E4D2B",
+    "aliases": [
+      "Colorado State"
+    ]
+  },
+  {
+    "canonical_name": "Columbia",
+    "espn_id": 171,
+    "color": "#99CAEA",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Concord",
+    "espn_id": 2148,
+    "color": "#6F263D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Concordia",
+    "espn_id": 130322,
+    "color": null,
+    "aliases": []
+  },
+  {
+    "canonical_name": "Concordia (MN)",
+    "espn_id": 2152,
+    "color": "#7D0042",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Concordia (WI)",
+    "espn_id": 409,
+    "color": "#005596",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Concordia Chicago",
+    "espn_id": 2151,
+    "color": "#9D2235",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Concordia St. Paul",
+    "espn_id": 3066,
+    "color": "#002F65",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Cornell",
+    "espn_id": 172,
+    "color": "#B31B1B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Cornell (IA)",
+    "espn_id": 2155,
+    "color": "#523178",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Crown",
+    "espn_id": 509,
+    "color": "#3C1053",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Cumberland (TN)",
+    "espn_id": 2161,
+    "color": "#98002E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Curry",
+    "espn_id": 40,
+    "color": "#462C8D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Dakota State",
+    "espn_id": 512,
+    "color": "#004165",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Dartmouth",
+    "espn_id": 159,
+    "color": "#005F2F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Davenport",
+    "espn_id": 110254,
+    "color": "#D5160C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Davidson",
+    "espn_id": 2166,
+    "color": "#BF0C26",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Dayton",
+    "espn_id": 2168,
+    "color": "#CE1141",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Dean",
+    "espn_id": 110438,
+    "color": "#862633",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Delaware",
+    "espn_id": 48,
+    "color": "#00539F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Delaware St.",
+    "espn_id": 2169,
+    "color": "#EE3124",
+    "aliases": [
+      "Delaware State"
+    ]
+  },
+  {
+    "canonical_name": "Delaware Valley",
+    "espn_id": 2808,
+    "color": "#215732",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Delta State",
+    "espn_id": 2170,
+    "color": "#00753E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Denison",
+    "espn_id": 2171,
+    "color": "#A6192E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Depauw",
+    "espn_id": 83,
+    "color": "#111C24",
+    "aliases": [
+      "DePauw"
+    ]
+  },
+  {
+    "canonical_name": "Dickinson",
+    "espn_id": 2175,
+    "color": "#E31837",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Drake",
+    "espn_id": 2181,
+    "color": "#003B73",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Dubuque",
+    "espn_id": 49,
+    "color": "#002D72",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Duke",
+    "espn_id": 150,
+    "color": "#00539B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Duquesne",
+    "espn_id": 2184,
+    "color": "#091F40",
+    "aliases": []
+  },
+  {
+    "canonical_name": "E. Illinois",
+    "espn_id": 2197,
+    "color": "#003399",
+    "aliases": [
+      "Eastern Illinois"
+    ]
+  },
+  {
+    "canonical_name": "E. Kentucky",
+    "espn_id": 2198,
+    "color": "#4C151E",
+    "aliases": [
+      "Eastern Kentucky"
+    ]
+  },
+  {
+    "canonical_name": "E. Michigan",
+    "espn_id": 2199,
+    "color": "#046A38",
+    "aliases": [
+      "Eastern Michigan"
+    ]
+  },
+  {
+    "canonical_name": "E. New Mexico",
+    "espn_id": 2201,
+    "color": "#006633",
+    "aliases": [
+      "Eastern New Mexico"
+    ]
+  },
+  {
+    "canonical_name": "E. Washington",
+    "espn_id": 331,
+    "color": "#A10022",
+    "aliases": [
+      "Eastern Washington"
+    ]
+  },
+  {
+    "canonical_name": "ETSU",
+    "espn_id": 2193,
+    "color": "#041E42",
+    "aliases": [
+      "East Tennessee State"
+    ]
+  },
+  {
+    "canonical_name": "East Carolina",
+    "espn_id": 151,
+    "color": "#592A8A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "East Central",
+    "espn_id": 2191,
+    "color": "#FF5200",
+    "aliases": []
+  },
+  {
+    "canonical_name": "East Stroudsburg",
+    "espn_id": 2188,
+    "color": "#DB0436",
+    "aliases": []
+  },
+  {
+    "canonical_name": "East Texas A&M",
+    "espn_id": 2837,
+    "color": "#F1B20F",
+    "aliases": [
+      "Texas A&M-Commerce"
+    ]
+  },
+  {
+    "canonical_name": "East Texas Baptist",
+    "espn_id": 2194,
+    "color": "#081F2C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Eastern",
+    "espn_id": 127954,
+    "color": "#6F2C3F",
+    "aliases": [
+      "Eastern University"
+    ]
+  },
+  {
+    "canonical_name": "Eastern Oregon",
+    "espn_id": 2202,
+    "color": "#002855",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Edinboro",
+    "espn_id": 2205,
+    "color": "#BB131A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Edward Waters",
+    "espn_id": 2206,
+    "color": "#7B2683",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Elizabeth City St.",
+    "espn_id": 2207,
+    "color": "#0039A6",
+    "aliases": [
+      "Elizabeth City State"
+    ]
+  },
+  {
+    "canonical_name": "Elmhurst",
+    "espn_id": 72,
+    "color": "#0C2340",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Elon",
+    "espn_id": 2210,
+    "color": "#73000A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Emory & Henry",
+    "espn_id": 2213,
+    "color": "#1B3D75",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Emporia State",
+    "espn_id": 2214,
+    "color": "#BB8D0A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Endicott",
+    "espn_id": 452,
+    "color": "#00325B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Erskine",
+    "espn_id": 101784,
+    "color": "#B8A46A",
+    "aliases": [
+      "ERSKINE"
+    ]
+  },
+  {
+    "canonical_name": "Eureka",
+    "espn_id": 101,
+    "color": "#862633",
+    "aliases": []
+  },
+  {
+    "canonical_name": "FAU",
+    "espn_id": 2226,
+    "color": "#003366",
+    "aliases": [
+      "Florida Atlantic"
+    ]
+  },
+  {
+    "canonical_name": "FDU Florham",
+    "espn_id": 2221,
+    "color": "#22324B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "FIU",
+    "espn_id": 2229,
+    "color": "#081E3F",
+    "aliases": [
+      "Florida International"
+    ]
+  },
+  {
+    "canonical_name": "Fairmont St.",
+    "espn_id": 2986,
+    "color": "#6F263D",
+    "aliases": [
+      "Fairmont State"
+    ]
+  },
+  {
+    "canonical_name": "Fayetteville St.",
+    "espn_id": 2220,
+    "color": "#0067B1",
+    "aliases": [
+      "Fayetteville State"
+    ]
+  },
+  {
+    "canonical_name": "Ferris St.",
+    "espn_id": 2222,
+    "color": "#BA0C2F",
+    "aliases": [
+      "Ferris State"
+    ]
+  },
+  {
+    "canonical_name": "Ferrum",
+    "espn_id": 366,
+    "color": "#998542",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Findlay",
+    "espn_id": 2224,
+    "color": "#F47920",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Fitchburg State",
+    "espn_id": 114,
+    "color": "#00563F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Fla. Memorial",
+    "espn_id": 125762,
+    "color": "#24469A",
+    "aliases": [
+      "Florida Memorial University"
+    ]
+  },
+  {
+    "canonical_name": "Florida",
+    "espn_id": 57,
+    "color": "#0021A5",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Florida A&M",
+    "espn_id": 50,
+    "color": "#F4811F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Florida St.",
+    "espn_id": 52,
+    "color": "#782F40",
+    "aliases": [
+      "Florida State"
+    ]
+  },
+  {
+    "canonical_name": "Florida Tech",
+    "espn_id": 53,
+    "color": "#770000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Fordham",
+    "espn_id": 2230,
+    "color": "#95003A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Fort Hays",
+    "espn_id": 2231,
+    "color": "#F6BE00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Fort Lewis",
+    "espn_id": 2237,
+    "color": "#000066",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Fort Valley St.",
+    "espn_id": 2232,
+    "color": "#1D4F91",
+    "aliases": [
+      "Fort Valley State"
+    ]
+  },
+  {
+    "canonical_name": "Framingham State",
+    "espn_id": 2967,
+    "color": "#EBAB00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Franklin",
+    "espn_id": 2233,
+    "color": "#FFD100",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Franklin & Marshall",
+    "espn_id": 2234,
+    "color": "#0035AD",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Franklin Pierce",
+    "espn_id": 112334,
+    "color": "#6F1931",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Fresno St.",
+    "espn_id": 278,
+    "color": "#b1102b",
+    "aliases": [
+      "Fresno State"
+    ]
+  },
+  {
+    "canonical_name": "Frostburg St.",
+    "espn_id": 341,
+    "color": "#BA0C2F",
+    "aliases": [
+      "Frostburg State"
+    ]
+  },
+  {
+    "canonical_name": "Furman",
+    "espn_id": 231,
+    "color": "#582C83",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Gallaudet",
+    "espn_id": 417,
+    "color": "#E8D4A2",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Gannon",
+    "espn_id": 367,
+    "color": "#960A2C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Gardner-Webb",
+    "espn_id": 2241,
+    "color": "#A6192E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Geneva",
+    "espn_id": 2242,
+    "color": "#89734C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "George Fox",
+    "espn_id": 415,
+    "color": "#081E3F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "George Mason",
+    "espn_id": 2244,
+    "color": "#215732",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Georgetown",
+    "espn_id": 46,
+    "color": "#00205C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Georgetown (KY)",
+    "espn_id": 2245,
+    "color": "#FF6600",
+    "aliases": [
+      "Georgetown College Kentucky"
+    ]
+  },
+  {
+    "canonical_name": "Georgia",
+    "espn_id": 61,
+    "color": "#BA0C2F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Georgia So.",
+    "espn_id": 290,
+    "color": "#041E42",
+    "aliases": [
+      "Georgia Southern"
+    ]
+  },
+  {
+    "canonical_name": "Georgia St.",
+    "espn_id": 2247,
+    "color": "#0039A6",
+    "aliases": [
+      "Georgia State"
+    ]
+  },
+  {
+    "canonical_name": "Georgia Tech",
+    "espn_id": 59,
+    "color": "#003057",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Gettysburg",
+    "espn_id": 2248,
+    "color": "#E87722",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Glenville St.",
+    "espn_id": 2249,
+    "color": "#003DA5",
+    "aliases": [
+      "Glenville State"
+    ]
+  },
+  {
+    "canonical_name": "Graceland University",
+    "espn_id": 530,
+    "color": "#00275C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Grambling",
+    "espn_id": 2755,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Grand Valley St.",
+    "espn_id": 125,
+    "color": "#0033A0",
+    "aliases": [
+      "Grand Valley State"
+    ]
+  },
+  {
+    "canonical_name": "Greensboro",
+    "espn_id": 2256,
+    "color": "#007A53",
+    "aliases": [
+      "Greensboro College"
+    ]
+  },
+  {
+    "canonical_name": "Greenville",
+    "espn_id": 2257,
+    "color": "#E35205",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Grinnell",
+    "espn_id": 65,
+    "color": "#DA291C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Grove City",
+    "espn_id": 146,
+    "color": "#DA291C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Guilford",
+    "espn_id": 2258,
+    "color": "#862633",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Gustavus Adolphus",
+    "espn_id": 2968,
+    "color": "#FFCF00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hamilton",
+    "espn_id": 348,
+    "color": "#002F86",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hamline",
+    "espn_id": 162,
+    "color": "#95021E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hampden Sydney",
+    "espn_id": 297,
+    "color": "#9D183D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hampton",
+    "espn_id": 2261,
+    "color": "#265198",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hanover",
+    "espn_id": 2262,
+    "color": "#A6192E",
+    "aliases": [
+      "Hanover College"
+    ]
+  },
+  {
+    "canonical_name": "Hardin Simmons",
+    "espn_id": 2810,
+    "color": "#581483",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Harding",
+    "espn_id": 2264,
+    "color": "#000000",
+    "aliases": [
+      "Harding University"
+    ]
+  },
+  {
+    "canonical_name": "Hartwick",
+    "espn_id": 173,
+    "color": "#0033A1",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Harvard",
+    "espn_id": 108,
+    "color": "#A51C30",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hawaii",
+    "espn_id": 62,
+    "color": "#004730",
+    "aliases": [
+      "Hawai'i"
+    ]
+  },
+  {
+    "canonical_name": "Heidelberg",
+    "espn_id": 191,
+    "color": "#FA4616",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Henderson State",
+    "espn_id": 2271,
+    "color": "#A91D36",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hendrix",
+    "espn_id": 418,
+    "color": "#010101",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hilbert",
+    "espn_id": 125974,
+    "color": "#0071CE",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hillsdale",
+    "espn_id": 2273,
+    "color": "#004678",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hiram",
+    "espn_id": 2274,
+    "color": "#003A70",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hobart",
+    "espn_id": 174,
+    "color": "#472663",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hofstra",
+    "espn_id": 2275,
+    "color": "#003591",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Holy Cross",
+    "espn_id": 107,
+    "color": "#602D89",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Hope",
+    "espn_id": 2812,
+    "color": "#E35205",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Houston",
+    "espn_id": 248,
+    "color": "#C8102E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Houston Chr.",
+    "espn_id": 2277,
+    "color": "#00529C",
+    "aliases": [
+      "Houston Christian"
+    ]
+  },
+  {
+    "canonical_name": "Howard",
+    "espn_id": 47,
+    "color": "#003A63",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Howard Payne",
+    "espn_id": 2758,
+    "color": "#00205B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Huntingdon",
+    "espn_id": 2938,
+    "color": "#C8102E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Husson",
+    "espn_id": 2280,
+    "color": "#004C45",
+    "aliases": []
+  },
+  {
+    "canonical_name": "IU Pennsylvania",
+    "espn_id": 2291,
+    "color": "#9E1B32",
+    "aliases": [
+      "Indiana (PA)"
+    ]
+  },
+  {
+    "canonical_name": "Idaho",
+    "espn_id": 70,
+    "color": "#B3A369",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Idaho St.",
+    "espn_id": 304,
+    "color": "#F47920",
+    "aliases": [
+      "Idaho State"
+    ]
+  },
+  {
+    "canonical_name": "Illinois",
+    "espn_id": 356,
+    "color": "#FF5F05",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Illinois College",
+    "espn_id": 2286,
+    "color": "#004A77",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Illinois St.",
+    "espn_id": 2287,
+    "color": "#CE1126",
+    "aliases": [
+      "Illinois State"
+    ]
+  },
+  {
+    "canonical_name": "Illinois Wesleyan",
+    "espn_id": 306,
+    "color": "#006747",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Incarnate Word",
+    "espn_id": 2916,
+    "color": "#CB333B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ind. Wesleyan",
+    "espn_id": 111756,
+    "color": "#A6192E",
+    "aliases": [
+      "Indiana Wesleyan"
+    ]
+  },
+  {
+    "canonical_name": "Indiana",
+    "espn_id": 84,
+    "color": "#990000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Indiana St.",
+    "espn_id": 282,
+    "color": "#0142BC",
+    "aliases": [
+      "Indiana State"
+    ]
+  },
+  {
+    "canonical_name": "Indianapolis",
+    "espn_id": 2292,
+    "color": "#9D2136",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Iowa",
+    "espn_id": 2294,
+    "color": "#FFCD00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Iowa St.",
+    "espn_id": 66,
+    "color": "#C8102E",
+    "aliases": [
+      "Iowa State"
+    ]
+  },
+  {
+    "canonical_name": "Ithaca",
+    "espn_id": 175,
+    "color": "#003B71",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Jackson St.",
+    "espn_id": 2296,
+    "color": "#002147",
+    "aliases": [
+      "Jackson State"
+    ]
+  },
+  {
+    "canonical_name": "Jacksonville",
+    "espn_id": 294,
+    "color": "#084E44",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Jacksonville St.",
+    "espn_id": 55,
+    "color": "#CC0000",
+    "aliases": [
+      "Jacksonville State"
+    ]
+  },
+  {
+    "canonical_name": "James Madison",
+    "espn_id": 256,
+    "color": "#450084",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Jamestown",
+    "espn_id": 2939,
+    "color": "#F2622B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "John Carroll",
+    "espn_id": 2302,
+    "color": "#28334A",
+    "aliases": [
+      "John Carroll University"
+    ]
+  },
+  {
+    "canonical_name": "Johns Hopkins",
+    "espn_id": 118,
+    "color": "#68ACE5",
+    "aliases": [
+      "Johns Hopkins University"
+    ]
+  },
+  {
+    "canonical_name": "Johnson C Smith",
+    "espn_id": 2304,
+    "color": "#002D56",
+    "aliases": [
+      "Johnson C. Smith"
+    ]
+  },
+  {
+    "canonical_name": "Judson",
+    "espn_id": 122775,
+    "color": "#172955",
+    "aliases": [
+      "Elgin"
+    ]
+  },
+  {
+    "canonical_name": "Juniata",
+    "espn_id": 246,
+    "color": "#1B365D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Kalamazoo",
+    "espn_id": 126,
+    "color": "#EC6820",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Kansas",
+    "espn_id": 2305,
+    "color": "#0051BA",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Kansas St.",
+    "espn_id": 2306,
+    "color": "#512888",
+    "aliases": [
+      "Kansas State"
+    ]
+  },
+  {
+    "canonical_name": "Kean",
+    "espn_id": 2871,
+    "color": "#003057",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Keiser (Fl)",
+    "espn_id": 127230,
+    "color": "#0D295E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Kennesaw St.",
+    "espn_id": 338,
+    "color": "#0B1315",
+    "aliases": [
+      "Kennesaw State"
+    ]
+  },
+  {
+    "canonical_name": "Kent St.",
+    "espn_id": 2309,
+    "color": "#003976",
+    "aliases": [
+      "Kent State"
+    ]
+  },
+  {
+    "canonical_name": "Kentucky",
+    "espn_id": 96,
+    "color": "#0033a0",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Kentucky Chr.",
+    "espn_id": 3077,
+    "color": "#EB1927",
+    "aliases": [
+      "Kentucky Christian"
+    ]
+  },
+  {
+    "canonical_name": "Kentucky St.",
+    "espn_id": 2310,
+    "color": "#056839",
+    "aliases": [
+      "Kentucky State"
+    ]
+  },
+  {
+    "canonical_name": "Kentucky Wesleyan",
+    "espn_id": 2316,
+    "color": "#392082",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Kenyon",
+    "espn_id": 352,
+    "color": "#4B2E84",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Keystone",
+    "espn_id": 122774,
+    "color": "#001680",
+    "aliases": []
+  },
+  {
+    "canonical_name": "King's",
+    "espn_id": 247,
+    "color": "#001C7D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Knox",
+    "espn_id": 255,
+    "color": "#5B2B82",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Kutztown",
+    "espn_id": 2315,
+    "color": "#782F40",
+    "aliases": [
+      "Kutztown University"
+    ]
+  },
+  {
+    "canonical_name": "LIU",
+    "espn_id": 2341,
+    "color": "#69B3E7",
+    "aliases": [
+      "Long Island University"
+    ]
+  },
+  {
+    "canonical_name": "LSU",
+    "espn_id": 99,
+    "color": "#461D7C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "La Verne",
+    "espn_id": 2318,
+    "color": "#2C5234",
+    "aliases": []
+  },
+  {
+    "canonical_name": "La. Tech",
+    "espn_id": 2348,
+    "color": "#003087",
+    "aliases": [
+      "Louisiana Tech"
+    ]
+  },
+  {
+    "canonical_name": "LaGrange",
+    "espn_id": 548,
+    "color": "#C4203C",
+    "aliases": [
+      "Lagrange College"
+    ]
+  },
+  {
+    "canonical_name": "Lackawanna",
+    "espn_id": 132714,
+    "color": null,
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lafayette",
+    "espn_id": 322,
+    "color": "#910029",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lake Erie",
+    "espn_id": 437,
+    "color": "#113D2A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lake Forest",
+    "espn_id": 262,
+    "color": "#C8102E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lakeland",
+    "espn_id": 6353,
+    "color": "#0C233F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lamar",
+    "espn_id": 2320,
+    "color": "#E31937",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lane",
+    "espn_id": 2323,
+    "color": "#C41B31",
+    "aliases": [
+      "Lane College"
+    ]
+  },
+  {
+    "canonical_name": "Langston",
+    "espn_id": 2324,
+    "color": "#1B3668",
+    "aliases": [
+      "Langston University"
+    ]
+  },
+  {
+    "canonical_name": "Lawrence",
+    "espn_id": 268,
+    "color": "#003D6A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lawrence Tech",
+    "espn_id": 102071,
+    "color": "#005fb8",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lebanon Valley",
+    "espn_id": 388,
+    "color": "#00305C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lehigh",
+    "espn_id": 2329,
+    "color": "#4B2913",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lenoir Rhyne",
+    "espn_id": 2331,
+    "color": "#000000",
+    "aliases": [
+      "Lenoir-Rhyne"
+    ]
+  },
+  {
+    "canonical_name": "Lewis & Clark",
+    "espn_id": 2333,
+    "color": "#F36F21",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lewis-Clark Valley College",
+    "espn_id": 134423,
+    "color": "#003865",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Liberty",
+    "espn_id": 2335,
+    "color": "#0A254E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lincoln (CA)",
+    "espn_id": 124179,
+    "color": "#960600",
+    "aliases": [
+      "Lincoln University (CA)"
+    ]
+  },
+  {
+    "canonical_name": "Lincoln (MO)",
+    "espn_id": 2876,
+    "color": "#102548",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lincoln (PA)",
+    "espn_id": 2339,
+    "color": "#003366",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lindenwood",
+    "espn_id": 2815,
+    "color": "#B5A36A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Linfield",
+    "espn_id": 203,
+    "color": "#470A68",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Livingstone",
+    "espn_id": 2940,
+    "color": "#86B0C6",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lock Haven",
+    "espn_id": 209,
+    "color": "#7A0026",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Loras",
+    "espn_id": 263,
+    "color": "#442D7D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Louisiana",
+    "espn_id": 309,
+    "color": "#CE181E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Louisiana Christian",
+    "espn_id": 2347,
+    "color": "#0038A8",
+    "aliases": [
+      "Louisiana College"
+    ]
+  },
+  {
+    "canonical_name": "Louisville",
+    "espn_id": 97,
+    "color": "#AD0000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Luther",
+    "espn_id": 67,
+    "color": "#004C97",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lycoming",
+    "espn_id": 2354,
+    "color": "#00305C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Lyon",
+    "espn_id": 101161,
+    "color": "#001E51",
+    "aliases": []
+  },
+  {
+    "canonical_name": "MIT",
+    "espn_id": 109,
+    "color": "#A31F34",
+    "aliases": []
+  },
+  {
+    "canonical_name": "MN St. Mankato",
+    "espn_id": 2364,
+    "color": "#480059",
+    "aliases": [
+      "Minnesota State",
+      "Minnesota State Mankato"
+    ]
+  },
+  {
+    "canonical_name": "MTSU",
+    "espn_id": 2393,
+    "color": "#0066cc",
+    "aliases": [
+      "Middle Tennessee"
+    ]
+  },
+  {
+    "canonical_name": "MVSU",
+    "espn_id": 2400,
+    "color": "#046A38",
+    "aliases": [
+      "Mississippi Valley State"
+    ]
+  },
+  {
+    "canonical_name": "Macalester",
+    "espn_id": 2359,
+    "color": "#01426A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Madonna University (Mich.)",
+    "espn_id": 127078,
+    "color": "#003893",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Maine",
+    "espn_id": 311,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Maine Maritime",
+    "espn_id": 274,
+    "color": "#005EAE",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Manchester",
+    "espn_id": 2362,
+    "color": "#E0CC61",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Marian (IN)",
+    "espn_id": 2366,
+    "color": "#031E51",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Marietta",
+    "espn_id": 317,
+    "color": "#00205B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Marist",
+    "espn_id": 2368,
+    "color": "#C8102E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Mars Hill",
+    "espn_id": 2369,
+    "color": "#002D72",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Marshall",
+    "espn_id": 276,
+    "color": "#00B140",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Martin Luther",
+    "espn_id": 446,
+    "color": "#C8102E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Mary Hardin Baylor",
+    "espn_id": 2371,
+    "color": "#4F1F91",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Maryland",
+    "espn_id": 120,
+    "color": "#E21833",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Maryville (TN)",
+    "espn_id": 2373,
+    "color": "#640A28",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Mass Maritime",
+    "espn_id": 110,
+    "color": "#002066",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Mayville St.",
+    "espn_id": 561,
+    "color": "#0033A0",
+    "aliases": [
+      "Mayville State"
+    ]
+  },
+  {
+    "canonical_name": "McDaniel",
+    "espn_id": 2700,
+    "color": "#00674D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "McKendree",
+    "espn_id": 2816,
+    "color": "#470A68",
+    "aliases": []
+  },
+  {
+    "canonical_name": "McMurry",
+    "espn_id": 241,
+    "color": "#6F1830",
+    "aliases": []
+  },
+  {
+    "canonical_name": "McNeese",
+    "espn_id": 2377,
+    "color": "#00529B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Memphis",
+    "espn_id": 235,
+    "color": "#003087",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Mercer",
+    "espn_id": 2382,
+    "color": "#CB5307",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Merchant Marine",
+    "espn_id": 2383,
+    "color": "#093A88",
+    "aliases": [
+      "Merchant Marine Academy"
+    ]
+  },
+  {
+    "canonical_name": "Mercyhurst",
+    "espn_id": 2385,
+    "color": "#0F4F44",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Merrimack",
+    "espn_id": 2771,
+    "color": "#0B335E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Methodist",
+    "espn_id": 291,
+    "color": "#034D36",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Miami (FL)",
+    "espn_id": 2390,
+    "color": "#F47321",
+    "aliases": [
+      "Miami"
+    ]
+  },
+  {
+    "canonical_name": "Miami (OH)",
+    "espn_id": 193,
+    "color": "#C41230",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Michigan",
+    "espn_id": 130,
+    "color": "#00274C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Michigan St.",
+    "espn_id": 127,
+    "color": "#18453B",
+    "aliases": [
+      "Michigan State"
+    ]
+  },
+  {
+    "canonical_name": "Michigan Tech",
+    "espn_id": 2392,
+    "color": "#FFCD00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Middlebury",
+    "espn_id": 2394,
+    "color": "#003882",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Midwestern St.",
+    "espn_id": 2395,
+    "color": "#862633",
+    "aliases": [
+      "Midwestern State"
+    ]
+  },
+  {
+    "canonical_name": "Miles",
+    "espn_id": 2396,
+    "color": "#671F75",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Millersville",
+    "espn_id": 210,
+    "color": "#EEB111",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Millikin",
+    "espn_id": 74,
+    "color": "#113C61",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Millsaps",
+    "espn_id": 2398,
+    "color": "#330066",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Minnesota",
+    "espn_id": 135,
+    "color": "#7A0019",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Minnesota Duluth",
+    "espn_id": 134,
+    "color": "#7A0019",
+    "aliases": [
+      "Minnesota-Duluth"
+    ]
+  },
+  {
+    "canonical_name": "Minnesota Morris",
+    "espn_id": 2399,
+    "color": "#8C1919",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Minnesota St Moorhead",
+    "espn_id": 2817,
+    "color": "#A6192E",
+    "aliases": [
+      "Minnesota St-Moorhead"
+    ]
+  },
+  {
+    "canonical_name": "Minot State",
+    "espn_id": 568,
+    "color": "#006242",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Misericordia",
+    "espn_id": 2969,
+    "color": "#0168B3",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Mississippi St.",
+    "espn_id": 344,
+    "color": "#5D1725",
+    "aliases": [
+      "Mississippi State"
+    ]
+  },
+  {
+    "canonical_name": "Missouri",
+    "espn_id": 142,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Missouri Baptist",
+    "espn_id": 2880,
+    "color": "#002144",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Missouri S&T",
+    "espn_id": 2402,
+    "color": "#154734",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Missouri So. St.",
+    "espn_id": 2403,
+    "color": "#006338",
+    "aliases": [
+      "Missouri Southern State"
+    ]
+  },
+  {
+    "canonical_name": "Missouri St.",
+    "espn_id": 2623,
+    "color": "#5E0009",
+    "aliases": [
+      "Missouri State"
+    ]
+  },
+  {
+    "canonical_name": "Missouri Western",
+    "espn_id": 137,
+    "color": "#FFC700",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Monmouth",
+    "espn_id": 2405,
+    "color": "#041E42",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Monmouth (IL)",
+    "espn_id": 2919,
+    "color": "#D3282F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Monroe",
+    "espn_id": 134001,
+    "color": "#16478E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Montana",
+    "espn_id": 149,
+    "color": "#660033",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Montana St.",
+    "espn_id": 147,
+    "color": "#00205B",
+    "aliases": [
+      "Montana State"
+    ]
+  },
+  {
+    "canonical_name": "Montana-Western",
+    "espn_id": 2701,
+    "color": "#CD262D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Montclair St.",
+    "espn_id": 2818,
+    "color": "#D1190D",
+    "aliases": [
+      "Montclair State"
+    ]
+  },
+  {
+    "canonical_name": "Moravian",
+    "espn_id": 323,
+    "color": "#00267A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Morehead St.",
+    "espn_id": 2413,
+    "color": "#005EB8",
+    "aliases": [
+      "Morehead State"
+    ]
+  },
+  {
+    "canonical_name": "Morehouse",
+    "espn_id": 60,
+    "color": "#A7A8A9",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Morgan St.",
+    "espn_id": 2415,
+    "color": "#002D74",
+    "aliases": [
+      "Morgan State"
+    ]
+  },
+  {
+    "canonical_name": "Mount Mercy",
+    "espn_id": 133688,
+    "color": "#003768",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Mount St Joseph",
+    "espn_id": 2419,
+    "color": "#003366",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Mount Union",
+    "espn_id": 426,
+    "color": "#661C78",
+    "aliases": [
+      "University of Mount Union"
+    ]
+  },
+  {
+    "canonical_name": "Muhlenberg",
+    "espn_id": 2422,
+    "color": "#A2AAA4",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Murray St.",
+    "espn_id": 93,
+    "color": "#002144",
+    "aliases": [
+      "Murray State"
+    ]
+  },
+  {
+    "canonical_name": "Muskingum",
+    "espn_id": 332,
+    "color": "#BF2037",
+    "aliases": []
+  },
+  {
+    "canonical_name": "N'Western (IA)",
+    "espn_id": 2471,
+    "color": "#A80000",
+    "aliases": [
+      "Northwestern (IA)"
+    ]
+  },
+  {
+    "canonical_name": "N. Arizona",
+    "espn_id": 2464,
+    "color": "#003466",
+    "aliases": [
+      "Northern Arizona"
+    ]
+  },
+  {
+    "canonical_name": "N. Carolina A&T",
+    "espn_id": 2448,
+    "color": "#004684",
+    "aliases": [
+      "North Carolina A&T"
+    ]
+  },
+  {
+    "canonical_name": "N. Colorado",
+    "espn_id": 2458,
+    "color": "#013C65",
+    "aliases": [
+      "Northern Colorado"
+    ]
+  },
+  {
+    "canonical_name": "N. Dakota St.",
+    "espn_id": 2449,
+    "color": "#005643",
+    "aliases": [
+      "North Dakota State"
+    ]
+  },
+  {
+    "canonical_name": "N. Illinois",
+    "espn_id": 2459,
+    "color": "#C8102E",
+    "aliases": [
+      "Northern Illinois"
+    ]
+  },
+  {
+    "canonical_name": "N. Iowa",
+    "espn_id": 2460,
+    "color": "#4B116F",
+    "aliases": [
+      "Northern Iowa"
+    ]
+  },
+  {
+    "canonical_name": "NC Central",
+    "espn_id": 2428,
+    "color": "#862633",
+    "aliases": [
+      "North Carolina Central"
+    ]
+  },
+  {
+    "canonical_name": "NC State",
+    "espn_id": 152,
+    "color": "#CC0000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "NC Wesleyan",
+    "espn_id": 286,
+    "color": "#0F4D76",
+    "aliases": [
+      "North Carolina Wesleyan"
+    ]
+  },
+  {
+    "canonical_name": "NM Highlands",
+    "espn_id": 2424,
+    "color": "#4E2683",
+    "aliases": [
+      "New Mexico Highlands"
+    ]
+  },
+  {
+    "canonical_name": "NW State",
+    "espn_id": 2466,
+    "color": "#492F92",
+    "aliases": [
+      "Northwestern State"
+    ]
+  },
+  {
+    "canonical_name": "Navy",
+    "espn_id": 2426,
+    "color": "#00205B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Nebraska",
+    "espn_id": 158,
+    "color": "#d00000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Nebraska Kearney",
+    "espn_id": 2438,
+    "color": "#004D86",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Nebraska Wesleyan",
+    "espn_id": 6845,
+    "color": "#AA985D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Nebraska-Omaha",
+    "espn_id": 2437,
+    "color": "#D71920",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Nelson (TX)",
+    "espn_id": 2904,
+    "color": "#592C82",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Nevada",
+    "espn_id": 2440,
+    "color": "#041E42",
+    "aliases": []
+  },
+  {
+    "canonical_name": "New England",
+    "espn_id": 111675,
+    "color": "#003882",
+    "aliases": []
+  },
+  {
+    "canonical_name": "New England College",
+    "espn_id": 131108,
+    "color": "#000F30",
+    "aliases": []
+  },
+  {
+    "canonical_name": "New Hampshire",
+    "espn_id": 160,
+    "color": "#001D52",
+    "aliases": []
+  },
+  {
+    "canonical_name": "New Haven",
+    "espn_id": 2441,
+    "color": "#004B8D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "New Mexico",
+    "espn_id": 167,
+    "color": "#ba0c2f",
+    "aliases": []
+  },
+  {
+    "canonical_name": "New Mexico St.",
+    "espn_id": 166,
+    "color": "#882345",
+    "aliases": [
+      "New Mexico State"
+    ]
+  },
+  {
+    "canonical_name": "Newberry",
+    "espn_id": 2444,
+    "color": "#ce0e2d",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Nicholls",
+    "espn_id": 2447,
+    "color": "#C41230",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Nichols",
+    "espn_id": 2884,
+    "color": "#007A5F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Norfolk St.",
+    "espn_id": 2450,
+    "color": "#007A53",
+    "aliases": [
+      "Norfolk State"
+    ]
+  },
+  {
+    "canonical_name": "North Alabama",
+    "espn_id": 2453,
+    "color": "#46166B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "North American",
+    "espn_id": 123086,
+    "color": "#17297B",
+    "aliases": [
+      "North American University"
+    ]
+  },
+  {
+    "canonical_name": "North Carolina",
+    "espn_id": 153,
+    "color": "#4B9CD3",
+    "aliases": []
+  },
+  {
+    "canonical_name": "North Central",
+    "espn_id": 3071,
+    "color": "#ab3541",
+    "aliases": [
+      "North Central College"
+    ]
+  },
+  {
+    "canonical_name": "North Dakota",
+    "espn_id": 155,
+    "color": "#009A44",
+    "aliases": []
+  },
+  {
+    "canonical_name": "North Greenville",
+    "espn_id": 2822,
+    "color": "#D60036",
+    "aliases": []
+  },
+  {
+    "canonical_name": "North Park",
+    "espn_id": 75,
+    "color": "#0057A8",
+    "aliases": []
+  },
+  {
+    "canonical_name": "North Texas",
+    "espn_id": 249,
+    "color": "#00853E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Northeastern",
+    "espn_id": 111,
+    "color": "#D41B2C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Northeastern St.",
+    "espn_id": 196,
+    "color": "#008265",
+    "aliases": [
+      "Northeastern State"
+    ]
+  },
+  {
+    "canonical_name": "Northern Michigan",
+    "espn_id": 128,
+    "color": "#095339",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Northern State",
+    "espn_id": 425,
+    "color": "#990033",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Northwest Missouri State",
+    "espn_id": 138,
+    "color": "#006A4E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Northwestern",
+    "espn_id": 77,
+    "color": "#4E2A84",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Northwestern (MN)",
+    "espn_id": 583,
+    "color": "#3D1A54",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Northwestern (OK)",
+    "espn_id": 2823,
+    "color": "#CC092F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Northwood",
+    "espn_id": 2886,
+    "color": "#093161",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Norwich",
+    "espn_id": 2467,
+    "color": "#87212E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Notre Dame",
+    "espn_id": 87,
+    "color": "#0C2340",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Notre Dame College",
+    "espn_id": 587,
+    "color": "#0068B3",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Oberlin",
+    "espn_id": 391,
+    "color": "#CF102D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ohio",
+    "espn_id": 195,
+    "color": "#024230",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ohio Dominican",
+    "espn_id": 2477,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ohio Northern",
+    "espn_id": 427,
+    "color": "#FF6600",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ohio St.",
+    "espn_id": 194,
+    "color": "#BB0000",
+    "aliases": [
+      "Ohio State"
+    ]
+  },
+  {
+    "canonical_name": "Ohio Wesleyan",
+    "espn_id": 2980,
+    "color": "#C51230",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Oklahoma",
+    "espn_id": 201,
+    "color": "#841617",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Oklahoma Baptist",
+    "espn_id": 319,
+    "color": "#007934",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Oklahoma Panhandle",
+    "espn_id": 2824,
+    "color": "#001F5B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Oklahoma St.",
+    "espn_id": 197,
+    "color": "#FE5C00",
+    "aliases": [
+      "Oklahoma State"
+    ]
+  },
+  {
+    "canonical_name": "Old Dominion",
+    "espn_id": 295,
+    "color": "#003057",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ole Miss",
+    "espn_id": 145,
+    "color": "#162b48",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Olivet",
+    "espn_id": 354,
+    "color": "#BD0034",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Oregon",
+    "espn_id": 2483,
+    "color": "#007030",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Oregon St.",
+    "espn_id": 204,
+    "color": "#DC4405",
+    "aliases": [
+      "Oregon State"
+    ]
+  },
+  {
+    "canonical_name": "Otterbein",
+    "espn_id": 359,
+    "color": "#E21B23",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ouachita Baptist",
+    "espn_id": 2888,
+    "color": "#552988",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Pace",
+    "espn_id": 2487,
+    "color": "#00337F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Pacific (OR)",
+    "espn_id": 205,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Pacific Lutheran",
+    "espn_id": 2486,
+    "color": "#FBBA37",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Penn",
+    "espn_id": 219,
+    "color": "#011F5b",
+    "aliases": [
+      "Pennsylvania"
+    ]
+  },
+  {
+    "canonical_name": "Penn St.",
+    "espn_id": 213,
+    "color": "#001E44",
+    "aliases": [
+      "Penn State"
+    ]
+  },
+  {
+    "canonical_name": "Phoenix",
+    "espn_id": 108358,
+    "color": null,
+    "aliases": []
+  },
+  {
+    "canonical_name": "Pittsburg St.",
+    "espn_id": 90,
+    "color": "#CC0C2F",
+    "aliases": [
+      "Pittsburg St",
+      "Pittsburg State"
+    ]
+  },
+  {
+    "canonical_name": "Pittsburgh",
+    "espn_id": 221,
+    "color": "#003594",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Plymouth State",
+    "espn_id": 2972,
+    "color": "#135841",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Point University",
+    "espn_id": 3179,
+    "color": "#00407A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Pomona Pitzer",
+    "espn_id": 2923,
+    "color": "#20438F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Portland St.",
+    "espn_id": 2502,
+    "color": "#154734",
+    "aliases": [
+      "Portland State"
+    ]
+  },
+  {
+    "canonical_name": "Post",
+    "espn_id": 126086,
+    "color": "#5E2750",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Prairie View",
+    "espn_id": 2504,
+    "color": "#330066",
+    "aliases": [
+      "Prairie View A&M"
+    ]
+  },
+  {
+    "canonical_name": "Presbyterian",
+    "espn_id": 2506,
+    "color": "#0060A9",
+    "aliases": [
+      "Presbyterian College"
+    ]
+  },
+  {
+    "canonical_name": "Princeton",
+    "espn_id": 163,
+    "color": "#FF6000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Puget Sound",
+    "espn_id": 2508,
+    "color": "#660000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Purdue",
+    "espn_id": 2509,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Quincy",
+    "espn_id": 2825,
+    "color": "#581E00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Randolph Macon",
+    "espn_id": 2516,
+    "color": "#F9DC30",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Redlands",
+    "espn_id": 29,
+    "color": "#7A2426",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Reinhardt",
+    "espn_id": 2890,
+    "color": "#003468",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rensselaer",
+    "espn_id": 2528,
+    "color": "#E2231B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rhode Island",
+    "espn_id": 227,
+    "color": "#75B2DD",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rhodes",
+    "espn_id": 2519,
+    "color": "#C4022B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rice",
+    "espn_id": 242,
+    "color": "#00205B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Richmond",
+    "espn_id": 257,
+    "color": "#C32032",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Ripon",
+    "espn_id": 2891,
+    "color": "#C31D36",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Roanoke College",
+    "espn_id": 131109,
+    "color": "#AD1742",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Robert Morris",
+    "espn_id": 2523,
+    "color": "#14234B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rochester (NY)",
+    "espn_id": 184,
+    "color": "#001E5F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rockford",
+    "espn_id": 2524,
+    "color": "#522E91",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rocky Mountain",
+    "espn_id": 2826,
+    "color": "#005A2D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Roosevelt",
+    "espn_id": 127991,
+    "color": "#008752",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rose Hulman",
+    "espn_id": 86,
+    "color": "#741415",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rowan",
+    "espn_id": 2827,
+    "color": "#57150B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Rutgers",
+    "espn_id": 164,
+    "color": "#CC0033",
+    "aliases": []
+  },
+  {
+    "canonical_name": "S. Connecticut",
+    "espn_id": 2583,
+    "color": "#001489",
+    "aliases": [
+      "Southern Connecticut State"
+    ]
+  },
+  {
+    "canonical_name": "S. Houston St.",
+    "espn_id": 2534,
+    "color": "#012169",
+    "aliases": [
+      "Sam Houston",
+      "Sam Houston State"
+    ]
+  },
+  {
+    "canonical_name": "S. Illinois",
+    "espn_id": 79,
+    "color": "#720000",
+    "aliases": [
+      "Southern Illinois"
+    ]
+  },
+  {
+    "canonical_name": "S. Utah",
+    "espn_id": 253,
+    "color": "#C41425",
+    "aliases": [
+      "Southern Utah"
+    ]
+  },
+  {
+    "canonical_name": "S.F. Austin",
+    "espn_id": 2617,
+    "color": "#3F2A55",
+    "aliases": [
+      "Stephen F. Austin"
+    ]
+  },
+  {
+    "canonical_name": "SD Mines",
+    "espn_id": 613,
+    "color": "#002554",
+    "aliases": [
+      "South Dakota Mines"
+    ]
+  },
+  {
+    "canonical_name": "SE Louisiana",
+    "espn_id": 2545,
+    "color": "#006341",
+    "aliases": [
+      "Southeastern Louisiana"
+    ]
+  },
+  {
+    "canonical_name": "SE Missouri St.",
+    "espn_id": 2546,
+    "color": "#C8102E",
+    "aliases": [
+      "Southeast Missouri State"
+    ]
+  },
+  {
+    "canonical_name": "SE Oklahoma St.",
+    "espn_id": 199,
+    "color": "#0033A0",
+    "aliases": [
+      "Southeastern Oklahoma State"
+    ]
+  },
+  {
+    "canonical_name": "SMU",
+    "espn_id": 2567,
+    "color": "#0033A0",
+    "aliases": []
+  },
+  {
+    "canonical_name": "SUNY Cortland",
+    "espn_id": 2782,
+    "color": "#B91000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "SUNY Maritime",
+    "espn_id": 2951,
+    "color": "#62082C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "SUNY Morrisville",
+    "espn_id": 3110,
+    "color": "#004730",
+    "aliases": []
+  },
+  {
+    "canonical_name": "SW Minnesota St.",
+    "espn_id": 2587,
+    "color": "#3A1807",
+    "aliases": [
+      "Southwest Minnesota State"
+    ]
+  },
+  {
+    "canonical_name": "Sac. State",
+    "espn_id": 16,
+    "color": "#043927",
+    "aliases": [
+      "Sacramento State"
+    ]
+  },
+  {
+    "canonical_name": "Sacred Heart",
+    "espn_id": 2529,
+    "color": "#CD1041",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Saginaw Valley St.",
+    "espn_id": 129,
+    "color": "#AC162A",
+    "aliases": [
+      "Saginaw Valley",
+      "Saginaw Valley State"
+    ]
+  },
+  {
+    "canonical_name": "Saint Anselm",
+    "espn_id": 2830,
+    "color": "#143E5F",
+    "aliases": [
+      "St. Anselm"
+    ]
+  },
+  {
+    "canonical_name": "Saint John's (MN)",
+    "espn_id": 2600,
+    "color": "#be0f34",
+    "aliases": [
+      "St. Johns (MN)"
+    ]
+  },
+  {
+    "canonical_name": "Saint Vincent",
+    "espn_id": 2614,
+    "color": "#1E5632",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Saint Xavier (IL)",
+    "espn_id": 130180,
+    "color": "#B20838",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Salisbury",
+    "espn_id": 2532,
+    "color": "#8A0000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Salve Regina",
+    "espn_id": 2776,
+    "color": "#005D55",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Samford",
+    "espn_id": 2535,
+    "color": "#002649",
+    "aliases": []
+  },
+  {
+    "canonical_name": "San Diego",
+    "espn_id": 301,
+    "color": "#75BEE9",
+    "aliases": []
+  },
+  {
+    "canonical_name": "San Diego St.",
+    "espn_id": 21,
+    "color": "#000000",
+    "aliases": [
+      "San Diego State"
+    ]
+  },
+  {
+    "canonical_name": "San Jose St.",
+    "espn_id": 23,
+    "color": "#0055A2",
+    "aliases": [
+      "San José State"
+    ]
+  },
+  {
+    "canonical_name": "Savannah St.",
+    "espn_id": 2542,
+    "color": "#ED7800",
+    "aliases": [
+      "Savannah St",
+      "Savannah State"
+    ]
+  },
+  {
+    "canonical_name": "Schreiner",
+    "espn_id": 102549,
+    "color": "#581515",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Seton Hill",
+    "espn_id": 611,
+    "color": "#BF0033",
+    "aliases": [
+      "Seton Hill College"
+    ]
+  },
+  {
+    "canonical_name": "Sewanee",
+    "espn_id": 2553,
+    "color": "#582C83",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Shaw",
+    "espn_id": 2551,
+    "color": "#671333",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Shenandoah",
+    "espn_id": 2828,
+    "color": "#57150B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Shepherd",
+    "espn_id": 2974,
+    "color": "#041E42",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Shippensburg",
+    "espn_id": 2559,
+    "color": "#001541",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Shorter",
+    "espn_id": 2560,
+    "color": "#0068B3",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Simpson (CA)",
+    "espn_id": 129758,
+    "color": "#C8102E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Simpson (IA)",
+    "espn_id": 2564,
+    "color": "#931A29",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Sioux Falls",
+    "espn_id": 2894,
+    "color": "#492F91",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Slippery Rock",
+    "espn_id": 215,
+    "color": "#006951",
+    "aliases": []
+  },
+  {
+    "canonical_name": "South Alabama",
+    "espn_id": 6,
+    "color": "#00205B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "South Carolina",
+    "espn_id": 2579,
+    "color": "#73000A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "South Carolina St.",
+    "espn_id": 2569,
+    "color": "#841A2B",
+    "aliases": [
+      "South Carolina State"
+    ]
+  },
+  {
+    "canonical_name": "South Dakota",
+    "espn_id": 233,
+    "color": "#AD0000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "South Dakota St.",
+    "espn_id": 2571,
+    "color": "#0032A0",
+    "aliases": [
+      "South Dakota State"
+    ]
+  },
+  {
+    "canonical_name": "Southern",
+    "espn_id": 2582,
+    "color": "#69B3E7",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Southern Arkansas",
+    "espn_id": 2568,
+    "color": "#003DA5",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Southern Miss",
+    "espn_id": 2572,
+    "color": "#FFAB00",
+    "aliases": [
+      "Southern Mississippi"
+    ]
+  },
+  {
+    "canonical_name": "Southern Nazarene",
+    "espn_id": 200,
+    "color": "#891717",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Southern Oregon",
+    "espn_id": 2584,
+    "color": "#C8102E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Southern Virginia",
+    "espn_id": 2896,
+    "color": "#9E1B32",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Southwest Bapt.",
+    "espn_id": 2586,
+    "color": "#472380",
+    "aliases": [
+      "Southwest Baptist"
+    ]
+  },
+  {
+    "canonical_name": "Southwestern Oklahoma State",
+    "espn_id": 2927,
+    "color": "#1B365D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Southwestern U",
+    "espn_id": 2588,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Springfield",
+    "espn_id": 81,
+    "color": "#862633",
+    "aliases": []
+  },
+  {
+    "canonical_name": "St Lawrence",
+    "espn_id": 2779,
+    "color": "#AF1E2D",
+    "aliases": [
+      "St. Lawrence"
+    ]
+  },
+  {
+    "canonical_name": "St. Ambrose",
+    "espn_id": 2591,
+    "color": "#1E3D7D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "St. Cloud State",
+    "espn_id": 2594,
+    "color": "#A10209",
+    "aliases": []
+  },
+  {
+    "canonical_name": "St. Francis (IL)",
+    "espn_id": 2595,
+    "color": "#543D27",
+    "aliases": []
+  },
+  {
+    "canonical_name": "St. Francis (PA)",
+    "espn_id": 2598,
+    "color": "#BD1F25",
+    "aliases": [
+      "Saint Francis",
+      "St Francis (PA)"
+    ]
+  },
+  {
+    "canonical_name": "St. John Fisher",
+    "espn_id": 374,
+    "color": "#993333",
+    "aliases": []
+  },
+  {
+    "canonical_name": "St. Norbert",
+    "espn_id": 2832,
+    "color": "#1A472B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "St. Olaf",
+    "espn_id": 133,
+    "color": "#C7940D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "St. Peter's",
+    "espn_id": 2612,
+    "color": "#003C71",
+    "aliases": []
+  },
+  {
+    "canonical_name": "St. Scholastica",
+    "espn_id": 375,
+    "color": "#0033A0",
+    "aliases": []
+  },
+  {
+    "canonical_name": "St. Thomas (MN)",
+    "espn_id": 2900,
+    "color": "#660099",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Stanford",
+    "espn_id": 24,
+    "color": "#8C1515",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Stetson",
+    "espn_id": 56,
+    "color": "#006747",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Stevenson",
+    "espn_id": 471,
+    "color": "#004E42",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Stonehill",
+    "espn_id": 284,
+    "color": "#582C83",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Stony Brook",
+    "espn_id": 2619,
+    "color": "#16243E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Sul Ross St.",
+    "espn_id": 2834,
+    "color": "#C70032",
+    "aliases": [
+      "Sul Ross State"
+    ]
+  },
+  {
+    "canonical_name": "Susquehanna",
+    "espn_id": 216,
+    "color": "#FF6A14",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Syracuse",
+    "espn_id": 183,
+    "color": "#D44500",
+    "aliases": []
+  },
+  {
+    "canonical_name": "TAMU-Kingsville",
+    "espn_id": 2658,
+    "color": "#FCC01F",
+    "aliases": [
+      "Texas A&M-Kingsville"
+    ]
+  },
+  {
+    "canonical_name": "TCNJ",
+    "espn_id": 2442,
+    "color": "#154A7C",
+    "aliases": [
+      "The College of New Jersey"
+    ]
+  },
+  {
+    "canonical_name": "TCU",
+    "espn_id": 2628,
+    "color": "#4D1979",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Tarleton St.",
+    "espn_id": 2627,
+    "color": "#5A2B81",
+    "aliases": [
+      "Tarleton State"
+    ]
+  },
+  {
+    "canonical_name": "Temple",
+    "espn_id": 218,
+    "color": "#9E1B34",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Tennessee",
+    "espn_id": 2633,
+    "color": "#FF8200",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Tennessee St.",
+    "espn_id": 2634,
+    "color": "#00539F",
+    "aliases": [
+      "Tennessee State"
+    ]
+  },
+  {
+    "canonical_name": "Tennessee Tech",
+    "espn_id": 2635,
+    "color": "#4F2984",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Texas",
+    "espn_id": 251,
+    "color": "#BF5700",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Texas A&M",
+    "espn_id": 245,
+    "color": "#500000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Texas College",
+    "espn_id": 2637,
+    "color": "#E0A238",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Texas Lutheran",
+    "espn_id": 2639,
+    "color": "#EAAB00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Texas So.",
+    "espn_id": 2640,
+    "color": "#6F263D",
+    "aliases": [
+      "Texas Southern"
+    ]
+  },
+  {
+    "canonical_name": "Texas St.",
+    "espn_id": 326,
+    "color": "#501214",
+    "aliases": [
+      "Texas State"
+    ]
+  },
+  {
+    "canonical_name": "Texas Tech",
+    "espn_id": 2641,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Texas Wesleyan",
+    "espn_id": 102626,
+    "color": "#002460",
+    "aliases": []
+  },
+  {
+    "canonical_name": "The Citadel",
+    "espn_id": 2643,
+    "color": "#3975B7",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Thiel",
+    "espn_id": 2644,
+    "color": "#998643",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Thomas",
+    "espn_id": 134000,
+    "color": "#B52C1F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Thomas More",
+    "espn_id": 2646,
+    "color": "#00559F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Tiffin",
+    "espn_id": 2838,
+    "color": "#154734",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Toledo",
+    "espn_id": 2649,
+    "color": "#15397F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Towson",
+    "espn_id": 119,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Trine",
+    "espn_id": 2651,
+    "color": "#00305C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Trinity (CT)",
+    "espn_id": 2977,
+    "color": "#00305C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Trinity (IL)",
+    "espn_id": 2652,
+    "color": "#002B5E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Trinity (TX)",
+    "espn_id": 386,
+    "color": "#723130",
+    "aliases": [
+      "Trinity University TX"
+    ]
+  },
+  {
+    "canonical_name": "Troy",
+    "espn_id": 2653,
+    "color": "#9E0531",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Truman St.",
+    "espn_id": 2654,
+    "color": "#510C76",
+    "aliases": [
+      "Truman State"
+    ]
+  },
+  {
+    "canonical_name": "Tufts",
+    "espn_id": 112,
+    "color": "#3E8EDE",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Tulane",
+    "espn_id": 2655,
+    "color": "#006747",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Tulsa",
+    "espn_id": 202,
+    "color": "#002D72",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Tusculum",
+    "espn_id": 2839,
+    "color": "#f26724",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Tuskegee",
+    "espn_id": 2657,
+    "color": "#7B0707",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UAB",
+    "espn_id": 5,
+    "color": "#006341",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UC Davis",
+    "espn_id": 302,
+    "color": "#B3A369",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UCF",
+    "espn_id": 2116,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UCLA",
+    "espn_id": 26,
+    "color": "#2774AE",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UConn",
+    "espn_id": 41,
+    "color": "#000E2F",
+    "aliases": [
+      "Connecticut"
+    ]
+  },
+  {
+    "canonical_name": "UFTL",
+    "espn_id": 124110,
+    "color": null,
+    "aliases": []
+  },
+  {
+    "canonical_name": "ULM",
+    "espn_id": 2433,
+    "color": "#ECAA1F",
+    "aliases": [
+      "Louisiana Monroe",
+      "UL Monroe"
+    ]
+  },
+  {
+    "canonical_name": "UMass",
+    "espn_id": 113,
+    "color": "#572932",
+    "aliases": [
+      "Massachusetts"
+    ]
+  },
+  {
+    "canonical_name": "UMass Dartmouth",
+    "espn_id": 379,
+    "color": "#003764",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UMass Lowell",
+    "espn_id": 2349,
+    "color": "#0067B1",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UNC Pembroke",
+    "espn_id": 2882,
+    "color": "#A67F31",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UNLV",
+    "espn_id": 2439,
+    "color": "#CF0A2C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "USC",
+    "espn_id": 30,
+    "color": "#990000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "USF",
+    "espn_id": 58,
+    "color": "#006747",
+    "aliases": [
+      "South Florida"
+    ]
+  },
+  {
+    "canonical_name": "UT Martin",
+    "espn_id": 2630,
+    "color": "#FF8200",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UT Permian Basin",
+    "espn_id": 110243,
+    "color": "#E35205",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UTEP",
+    "espn_id": 2638,
+    "color": "#FF8200",
+    "aliases": []
+  },
+  {
+    "canonical_name": "UTRGV",
+    "espn_id": 292,
+    "color": "#F05023",
+    "aliases": [
+      "UT Rio Grande Valley"
+    ]
+  },
+  {
+    "canonical_name": "UTSA",
+    "espn_id": 2636,
+    "color": "#F15A22",
+    "aliases": [
+      "UT San Antonio"
+    ]
+  },
+  {
+    "canonical_name": "UVA Wise",
+    "espn_id": 2842,
+    "color": "#D21414",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Union",
+    "espn_id": 237,
+    "color": null,
+    "aliases": []
+  },
+  {
+    "canonical_name": "University of Mary",
+    "espn_id": 559,
+    "color": "#00539B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "University of Rio Grande",
+    "espn_id": 131239,
+    "color": "#B80000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Upper Iowa",
+    "espn_id": 389,
+    "color": "#001f60",
+    "aliases": [
+      "Upper Iowa University"
+    ]
+  },
+  {
+    "canonical_name": "Ursinus",
+    "espn_id": 2667,
+    "color": "#98012E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Utah",
+    "espn_id": 254,
+    "color": "#CC0000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Utah St.",
+    "espn_id": 328,
+    "color": "#0F2439",
+    "aliases": [
+      "Utah State"
+    ]
+  },
+  {
+    "canonical_name": "Utah Tech",
+    "espn_id": 3101,
+    "color": "#16243A",
+    "aliases": [
+      "Dixie State"
+    ]
+  },
+  {
+    "canonical_name": "Utica",
+    "espn_id": 390,
+    "color": "#0C223F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "VMI",
+    "espn_id": 2678,
+    "color": "#FFD619",
+    "aliases": []
+  },
+  {
+    "canonical_name": "VT St. Castleton",
+    "espn_id": 293,
+    "color": "#00563B",
+    "aliases": [
+      "Vermont State Castleton"
+    ]
+  },
+  {
+    "canonical_name": "Va.-Lynchburg",
+    "espn_id": 2355,
+    "color": "#303A55",
+    "aliases": [
+      "Virginia Lynchburg",
+      "Virginia University Of Lynchburg"
+    ]
+  },
+  {
+    "canonical_name": "Valdosta State",
+    "espn_id": 2673,
+    "color": "#CC0000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Valley City State",
+    "espn_id": 628,
+    "color": "#810027",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Valparaiso",
+    "espn_id": 2674,
+    "color": "#381E0E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Vanderbilt",
+    "espn_id": 238,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Villanova",
+    "espn_id": 222,
+    "color": "#002664",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Virginia",
+    "espn_id": 258,
+    "color": "#E57200",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Virginia St.",
+    "espn_id": 330,
+    "color": "#1F3D7B",
+    "aliases": [
+      "Virginia St",
+      "Virginia State"
+    ]
+  },
+  {
+    "canonical_name": "Virginia Tech",
+    "espn_id": 259,
+    "color": "#630031",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Virginia Union",
+    "espn_id": 2676,
+    "color": "#8F012D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "W. Carolina",
+    "espn_id": 2717,
+    "color": "#592C88",
+    "aliases": [
+      "Western Carolina"
+    ]
+  },
+  {
+    "canonical_name": "W. Colorado",
+    "espn_id": 2714,
+    "color": "#A71930",
+    "aliases": [
+      "Western Colorado"
+    ]
+  },
+  {
+    "canonical_name": "W. Connecticut St.",
+    "espn_id": 2843,
+    "color": "#FF4D00",
+    "aliases": [
+      "Western Connecticut State"
+    ]
+  },
+  {
+    "canonical_name": "W. Illinois",
+    "espn_id": 2710,
+    "color": "#663399",
+    "aliases": [
+      "Western Illinois"
+    ]
+  },
+  {
+    "canonical_name": "W. Kentucky",
+    "espn_id": 98,
+    "color": "#C60C30",
+    "aliases": [
+      "Western Kentucky"
+    ]
+  },
+  {
+    "canonical_name": "W. Michigan",
+    "espn_id": 2711,
+    "color": "#532E1F",
+    "aliases": [
+      "Western Michigan"
+    ]
+  },
+  {
+    "canonical_name": "W. New England",
+    "espn_id": 2702,
+    "color": "#003082",
+    "aliases": [
+      "Western New England"
+    ]
+  },
+  {
+    "canonical_name": "W. New Mexico",
+    "espn_id": 2703,
+    "color": "#42196F",
+    "aliases": [
+      "Western New Mexico"
+    ]
+  },
+  {
+    "canonical_name": "W. Oregon",
+    "espn_id": 2848,
+    "color": "#E31837",
+    "aliases": [
+      "Western Oregon"
+    ]
+  },
+  {
+    "canonical_name": "WI-La Crosse",
+    "espn_id": 2740,
+    "color": "#969799",
+    "aliases": [
+      "Wisconsin La Crosse",
+      "Wisconsin-Lacrosse"
+    ]
+  },
+  {
+    "canonical_name": "WI-Lutheran",
+    "espn_id": 2741,
+    "color": "#006643",
+    "aliases": [
+      "Wisconsin Lutheran"
+    ]
+  },
+  {
+    "canonical_name": "WI-Platteville",
+    "espn_id": 272,
+    "color": "#ff5800",
+    "aliases": [
+      "Wisconsin Platteville",
+      "Wisconsin-Platteville"
+    ]
+  },
+  {
+    "canonical_name": "WI-River Falls",
+    "espn_id": 2723,
+    "color": "#C80F2E",
+    "aliases": [
+      "Wisconsin-River Falls"
+    ]
+  },
+  {
+    "canonical_name": "WI-Stevens Point",
+    "espn_id": 2743,
+    "color": "#59178A",
+    "aliases": [
+      "Wisconsin Stevens Point"
+    ]
+  },
+  {
+    "canonical_name": "WPI",
+    "espn_id": 2749,
+    "color": "#AC2B37",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wabash",
+    "espn_id": 89,
+    "color": "#EC1C2C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wagner",
+    "espn_id": 2681,
+    "color": "#004331",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wake Forest",
+    "espn_id": 154,
+    "color": "#000000",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Walsh",
+    "espn_id": 2682,
+    "color": "#6D0020",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Warner",
+    "espn_id": 2683,
+    "color": "#1A305B",
+    "aliases": [
+      "Warner University"
+    ]
+  },
+  {
+    "canonical_name": "Wartburg",
+    "espn_id": 2685,
+    "color": "#F58025",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wash. St. Louis",
+    "espn_id": 143,
+    "color": "#A51417",
+    "aliases": [
+      "Washington (MO)",
+      "Washington St. Louis"
+    ]
+  },
+  {
+    "canonical_name": "Washburn",
+    "espn_id": 2687,
+    "color": "#002E5E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Washington",
+    "espn_id": 264,
+    "color": "#4B2E83",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Washington & Jefferson",
+    "espn_id": 2686,
+    "color": "#A4343A",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Washington St.",
+    "espn_id": 265,
+    "color": "#981E32",
+    "aliases": [
+      "Washington State"
+    ]
+  },
+  {
+    "canonical_name": "Washington and Lee",
+    "espn_id": 2688,
+    "color": "#003399",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wayland Baptist",
+    "espn_id": 630,
+    "color": "#004A8D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wayne St. (MI)",
+    "espn_id": 131,
+    "color": "#115E56",
+    "aliases": [
+      "Wayne State (MI)"
+    ]
+  },
+  {
+    "canonical_name": "Wayne State (NE)",
+    "espn_id": 2844,
+    "color": "#FBBF22",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Waynesburg",
+    "espn_id": 2845,
+    "color": "#B95205",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Webber Int'l",
+    "espn_id": 2691,
+    "color": "#00544D",
+    "aliases": [
+      "Webber International"
+    ]
+  },
+  {
+    "canonical_name": "Weber St.",
+    "espn_id": 2692,
+    "color": "#4B2682",
+    "aliases": [
+      "Weber State"
+    ]
+  },
+  {
+    "canonical_name": "Wesleyan (CT)",
+    "espn_id": 336,
+    "color": "#D72121",
+    "aliases": []
+  },
+  {
+    "canonical_name": "West Alabama",
+    "espn_id": 2695,
+    "color": "#AC1F2D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "West Chester",
+    "espn_id": 223,
+    "color": "#540E69",
+    "aliases": []
+  },
+  {
+    "canonical_name": "West Florida",
+    "espn_id": 110242,
+    "color": "#0072CE",
+    "aliases": []
+  },
+  {
+    "canonical_name": "West Georgia",
+    "espn_id": 2698,
+    "color": "#0033A1",
+    "aliases": []
+  },
+  {
+    "canonical_name": "West Liberty",
+    "espn_id": 2699,
+    "color": "#FFFFFF",
+    "aliases": []
+  },
+  {
+    "canonical_name": "West Texas",
+    "espn_id": 2704,
+    "color": "#6A1831",
+    "aliases": [
+      "West Texas A&M"
+    ]
+  },
+  {
+    "canonical_name": "West Virginia",
+    "espn_id": 277,
+    "color": "#002855",
+    "aliases": []
+  },
+  {
+    "canonical_name": "West Virginia State",
+    "espn_id": 2707,
+    "color": "#C99700",
+    "aliases": []
+  },
+  {
+    "canonical_name": "West Virginia Tech",
+    "espn_id": 2706,
+    "color": "#002855",
+    "aliases": []
+  },
+  {
+    "canonical_name": "West Virginia Wesleyan",
+    "espn_id": 455,
+    "color": "#FF4C00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Westfield State",
+    "espn_id": 2909,
+    "color": "#00247D",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Westgate Christian University",
+    "espn_id": 134087,
+    "color": null,
+    "aliases": []
+  },
+  {
+    "canonical_name": "Westminster (MO)",
+    "espn_id": 433,
+    "color": "#002F56",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Westminster (PA)",
+    "espn_id": 2849,
+    "color": "#0C2340",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wheaton",
+    "espn_id": 396,
+    "color": "#00447C",
+    "aliases": [
+      "Wheaton (IL)"
+    ]
+  },
+  {
+    "canonical_name": "Wheeling",
+    "espn_id": 112335,
+    "color": "#E31937",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Whittier",
+    "espn_id": 2850,
+    "color": "#661C78",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Whitworth",
+    "espn_id": 2721,
+    "color": "#C22033",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Widener",
+    "espn_id": 2725,
+    "color": "#0057B8",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wilkes",
+    "espn_id": 398,
+    "color": "#002855",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Willamette",
+    "espn_id": 2930,
+    "color": "#98002E",
+    "aliases": []
+  },
+  {
+    "canonical_name": "William & Mary",
+    "espn_id": 2729,
+    "color": "#115740",
+    "aliases": []
+  },
+  {
+    "canonical_name": "William Jewell",
+    "espn_id": 2911,
+    "color": "#E4002B",
+    "aliases": [
+      "William Jewell College"
+    ]
+  },
+  {
+    "canonical_name": "William Paterson",
+    "espn_id": 2970,
+    "color": "#F06023",
+    "aliases": []
+  },
+  {
+    "canonical_name": "William Woods",
+    "espn_id": 129741,
+    "color": "#124734",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Williams",
+    "espn_id": 2731,
+    "color": "#512698",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wilmington (OH)",
+    "espn_id": 2733,
+    "color": "#024E43",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wingate",
+    "espn_id": 351,
+    "color": "#00205B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Winona St.",
+    "espn_id": 2851,
+    "color": "#4B08A1",
+    "aliases": [
+      "Winona State"
+    ]
+  },
+  {
+    "canonical_name": "Winston-Salem",
+    "espn_id": 2736,
+    "color": "#C8102E",
+    "aliases": [
+      "Winston-Salem State"
+    ]
+  },
+  {
+    "canonical_name": "Wisconsin",
+    "espn_id": 275,
+    "color": "#C5050C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wisconsin Eau Claire",
+    "espn_id": 2738,
+    "color": "#2B3E85",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wisconsin Oshkosh",
+    "espn_id": 271,
+    "color": "#FFCC00",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wisconsin Stout",
+    "espn_id": 2744,
+    "color": "#012169",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wisconsin Whitewater",
+    "espn_id": 2745,
+    "color": "#502D7F",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wittenberg",
+    "espn_id": 2746,
+    "color": "#C51F35",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wofford",
+    "espn_id": 2747,
+    "color": "#886E4C",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wooster",
+    "espn_id": 2748,
+    "color": "#F7BE15",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Worcester St.",
+    "espn_id": 402,
+    "color": "#003896",
+    "aliases": [
+      "Worcester State",
+      "Worcester State College"
+    ]
+  },
+  {
+    "canonical_name": "Wright State University",
+    "espn_id": 2750,
+    "color": "#046A38",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Wyoming",
+    "espn_id": 2751,
+    "color": "#492F24",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Yale",
+    "espn_id": 43,
+    "color": "#00356B",
+    "aliases": []
+  },
+  {
+    "canonical_name": "Youngstown St.",
+    "espn_id": 2754,
+    "color": "#C8102E",
+    "aliases": [
+      "Youngstown State"
+    ]
+  }
+]

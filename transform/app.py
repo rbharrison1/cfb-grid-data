@@ -6,6 +6,7 @@ from google.cloud import bigquery
 
 import bq_reader
 import bq_transform
+import ensure_indexes as ensure_indexes_module
 import mongo_writer
 
 app = Flask(__name__)
@@ -169,6 +170,64 @@ def transform_route():
         return body, status
 
     return result
+
+
+@app.route("/diagnose-query", methods=["GET", "POST"])
+def diagnose_query_route():
+    """Temporary diagnostic: runs the exact query cfb-grid-server's
+    /game/date/:date route uses, with explain('executionStats'), so we can
+    see the real query plan (COLLSCAN vs IXSCAN, docsExamined, timing)
+    instead of guessing from the outside."""
+    mongodb_uri = os.environ.get("MONGODB_URI")
+    if not mongodb_uri:
+        return Response("Missing MONGODB_URI environment variable", status=500, mimetype="text/plain")
+
+    from pymongo import MongoClient
+    import certifi
+
+    request_json = request.get_json(silent=True) or {}
+    date = request_json.get("date") or request.args.get("date") or "2026-09-19"
+    collection_name = request_json.get("collection") or request.args.get("collection") or "games"
+
+    client = MongoClient(mongodb_uri, tlsCAFile=certifi.where())
+    try:
+        collection = client["cfb-grid"][collection_name]
+        explain = collection.find({"date": {"$eq": date}}).sort([("date", 1), ("print_time", 1)]).explain()
+        stats = explain.get("executionStats", {})
+        winning_plan = explain.get("queryPlanner", {}).get("winningPlan", {})
+        return Response(json.dumps({
+            "winningPlan_stage": winning_plan.get("stage"),
+            "winningPlan_inputStage_stage": (winning_plan.get("inputStage") or {}).get("stage"),
+            "winningPlan": winning_plan,
+            "nReturned": stats.get("nReturned"),
+            "totalDocsExamined": stats.get("totalDocsExamined"),
+            "totalKeysExamined": stats.get("totalKeysExamined"),
+            "executionTimeMillis": stats.get("executionTimeMillis"),
+            "indexes_on_collection": list(collection.list_indexes()),
+        }, default=str), status=200, mimetype="application/json")
+    finally:
+        client.close()
+
+
+@app.route("/ensure-indexes", methods=["POST"])
+def ensure_indexes_route():
+    """Runs ensure_indexes.py's index creation over HTTP instead of needing
+    local shell access to MONGODB_URI. create_index is idempotent (a no-op
+    if the same key spec already exists), so this is safe to call more than
+    once or on a collection that already has some of these indexes."""
+    mongodb_uri = os.environ.get("MONGODB_URI")
+    if not mongodb_uri:
+        return Response("Missing MONGODB_URI environment variable", status=500, mimetype="text/plain")
+
+    request_json = request.get_json(silent=True) or {}
+    collection = request_json.get("collection") or request.args.get("collection") or "games"
+
+    try:
+        ensure_indexes_module.ensure_indexes(mongodb_uri, collection_name=collection)
+    except Exception as e:
+        return Response(f"Index creation failed: {e}", status=500, mimetype="text/plain")
+
+    return Response(f"Indexes ensured on '{collection}' collection.", status=200, mimetype="text/plain")
 
 
 if __name__ == "__main__":
