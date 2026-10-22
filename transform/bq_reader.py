@@ -92,12 +92,19 @@ def read_media(client: bigquery.Client, table: str, year: int, week: int) -> pd.
 
 def read_tv_schedule(client: bigquery.Client, table: str, year: int, week: int) -> pd.DataFrame:
     """Reads the fbschedules.com TV schedule scrape. There's no stable id from
-    this source, so dedup keys on (away_team, home_team, date) instead."""
+    this source, so dedup keys on (away_team, home_team) instead -- the same
+    key tv_schedule_match matches on within a week.
+
+    `date` must NOT be part of the dedup key: when fbschedules moves a game to
+    a different day (e.g. Wednesday -> Thursday), the stale row from earlier
+    ingests has a different date and would survive dedup alongside the new
+    one. Both rows then match the same CFBD game, and whichever BigQuery
+    happens to return last silently wins in match_outlets."""
     sql = f"""
         SELECT away_team, home_team, date, time, network
         FROM `{table}`
         WHERE _year = @year AND week = @week
-        QUALIFY ROW_NUMBER() OVER (PARTITION BY away_team, home_team, date ORDER BY _ingested_at DESC) = 1
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY away_team, home_team ORDER BY _ingested_at DESC) = 1
     """
     columns = ["away_team", "home_team", "date", "time", "network"]
     return _to_dataframe_or_empty(_run(client, sql, year=year, week=week), columns)
