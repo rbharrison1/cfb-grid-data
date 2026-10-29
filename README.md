@@ -21,6 +21,8 @@ Cloud Scheduler --> Cloud Run: transform (transform/app.py)
 
 Each ingest run fetches every configured endpoint, writes an immutable NDJSON snapshot to Cloud Storage first, then BigQuery-loads that GCS object into the corresponding `raw_<endpoint>` table with `WRITE_APPEND`. Because the GCS snapshot is kept, a bad API response or a downstream BigQuery schema issue can be replayed/reloaded without re-hitting the CFBD API. Each row gets ingestion metadata columns (`_ingested_at`, `_source_endpoint`, `_year`, `_week`) so it can be traced back to the run and source file that produced it.
 
+**College basketball** has its own pair of services in [`cbb/`](cbb/README.md) (`cfb-grid-cbb-ingest` / `cfb-grid-cbb-transform`), sourced from the CollegeBasketballData API into BigQuery `cbb_raw` and Mongo `cfb-grid.cbb-games`. Everything below this point is the football pipeline.
+
 Raw tables are intentionally untransformed — the `transform/` service (see [below](#transform-service)) is what turns them into the documents MongoDB/[`cfb-grid-server`](https://github.com/rbharrison1/cfb-grid) actually serve.
 
 ## Structure

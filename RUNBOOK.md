@@ -46,3 +46,21 @@ Never point a manual run at production data without meaning to. Add these params
 
 - Ingest: `"dataset": "your_scratch_dataset"` (and/or `"bucket": "your-scratch-bucket"`)
 - Transform: `"dataset": "your_scratch_dataset", "collection": "games_test"`
+
+## College basketball (`cbb/`)
+
+Both CBB services are private (identity token required). Scheduler jobs: `cfb-grid-cbb-daily-ingest`, `cfb-grid-cbb-daily-transform`, `cfb-grid-cbb-weekly-ingest`, `cfb-grid-cbb-weekly-transform` — rerun any with `gcloud scheduler jobs run <name> --location us-central1`. Ad hoc:
+
+```bash
+TOKEN=$(gcloud auth print-identity-token)
+INGEST=$(gcloud run services describe cfb-grid-cbb-ingest --region us-central1 --format='value(status.url)')
+TRANSFORM=$(gcloud run services describe cfb-grid-cbb-transform --region us-central1 --format='value(status.url)')
+
+# a date range (Eastern dates), or {"range":"season"} for the whole season
+curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"start":"2026-11-01","end":"2026-11-30"}' "$INGEST/ingest"
+curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"start":"2026-11-01","end":"2026-11-30"}' "$TRANSFORM/transform"
+```
+
+The deployed transform writes to `cbb-games` (`MONGO_COLLECTION`); pass `"collection":"cbb-games_test"` to test without touching production. See `cbb/README.md` for params and gotchas.

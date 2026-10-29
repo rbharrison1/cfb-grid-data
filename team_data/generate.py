@@ -3,7 +3,8 @@ the single canonical source for team name/alias/id/color data.
 
 To add, rename, or fix a team: edit teams.json directly, or use edit.py's
 subcommands (recommended -- see README.md), then run this script and review
-the diffs it produces across all 3 repos before committing/deploying each
+the diffs it produces across all 3 repos (including the college basketball
+transform, cbb/transform/config/) before committing/deploying each
 one per its own normal process.
 
 Usage:
@@ -59,6 +60,12 @@ TEAM_COLORS = {{team['canonical_name']: team['color'] for team in _TEAMS}}
 '''
 
 TRANSFORM_EXTRA_DOCSTRING = ''
+CBB_TRANSFORM_EXTRA_DOCSTRING = '''
+College basketball copy. CBBD's /teams list (ESPN id + color) is the primary
+source for D1 teams in cbb_transform.py; this file supplies display-name
+substitutions, curated color overrides, and the ESPN id fallback for non-D1
+opponents CBBD has no team record for.
+'''
 LIVE_SCORES_EXTRA_DOCSTRING = '''
 Used here as the first fallback tier when resolving an NCAA scoreboard team
 name to the display name already stored in Mongo's away_team/home_team
@@ -150,6 +157,7 @@ def main():
     teams_json_content = render_teams_json(teams)
     transform_teams_py = render_teams_py(TRANSFORM_EXTRA_DOCSTRING)
     live_scores_teams_py = render_teams_py(LIVE_SCORES_EXTRA_DOCSTRING)
+    cbb_transform_teams_py = render_teams_py(CBB_TRANSFORM_EXTRA_DOCSTRING)
     teams_lookup_json_content = render_teams_lookup_json(teams)
 
     results = []
@@ -157,6 +165,8 @@ def main():
     write_or_check(os.path.join(REPO_ROOT, 'transform', 'config', 'teams.py'), transform_teams_py, args.check, results)
     write_or_check(os.path.join(REPO_ROOT, 'live-scores', 'config', 'teams.json'), teams_json_content, args.check, results)
     write_or_check(os.path.join(REPO_ROOT, 'live-scores', 'config', 'teams.py'), live_scores_teams_py, args.check, results)
+    write_or_check(os.path.join(REPO_ROOT, 'cbb', 'transform', 'config', 'teams.json'), teams_json_content, args.check, results)
+    write_or_check(os.path.join(REPO_ROOT, 'cbb', 'transform', 'config', 'teams.py'), cbb_transform_teams_py, args.check, results)
 
     web_repo = os.path.abspath(args.web_repo)
     teams_lookup_json_path = os.path.join(web_repo, TEAMS_LOOKUP_JSON_REL)

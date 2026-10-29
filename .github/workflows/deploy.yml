@@ -27,11 +27,15 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install -r transform/requirements.txt
+          python -m pip install -r cbb/ingest/requirements.txt
+          python -m pip install -r cbb/transform/requirements.txt
 
       - name: Validate Python syntax
         run: |
           python -m py_compile app.py bq_ingest.py
           python -m py_compile transform/app.py transform/bq_reader.py transform/bq_transform.py transform/mongo_writer.py transform/time_utils.py
+          python -m py_compile cbb/ingest/app.py cbb/ingest/bq_ingest.py
+          python -m py_compile cbb/transform/app.py cbb/transform/bq_reader.py cbb/transform/cbb_transform.py cbb/transform/mongo_writer.py cbb/transform/time_utils.py cbb/transform/config/networks.py
 
       - name: Authenticate to Google Cloud (OIDC)
         uses: google-github-actions/auth@v2
@@ -72,3 +76,34 @@ jobs:
           secrets: |
             MONGODB_URI=MONGODB_URI:latest
           flags: --service-account=${{ secrets.GCP_SA_EMAIL }}
+
+      # College basketball (CollegeBasketballData API) -- see cbb/ and CLAUDE.md.
+      # Both private: invoked by Cloud Scheduler with an OIDC token. The CFBD
+      # API key also works for CBBD, so the same secret is mounted.
+      - name: Deploy CBB ingest service to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: cfb-grid-cbb-ingest
+          region: '${{ secrets.GCP_REGION }}'
+          source: cbb/ingest
+          env_vars: |
+            GCS_BUCKET=${{ secrets.GCS_BUCKET }}
+            BQ_DATASET=cbb_raw
+            DEFAULT_SEASON=2027
+          secrets: |
+            CBBD_API_KEY=CFBD_API_KEY:latest
+          flags: --service-account=${{ secrets.GCP_SA_EMAIL }} --timeout=1800
+
+      - name: Deploy CBB transform service to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: cfb-grid-cbb-transform
+          region: '${{ secrets.GCP_REGION }}'
+          source: cbb/transform
+          env_vars: |
+            BQ_DATASET=cbb_raw
+            DEFAULT_SEASON=2027
+            MONGO_COLLECTION=cbb-games
+          secrets: |
+            MONGODB_URI=MONGODB_URI:latest
+          flags: --service-account=${{ secrets.GCP_SA_EMAIL }} --timeout=1800

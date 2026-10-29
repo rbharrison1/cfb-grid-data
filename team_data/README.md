@@ -3,7 +3,9 @@
 Single canonical source for every team's display name, known alternate
 spellings, ESPN/CFBD numeric id (used for logo filenames), and hex color.
 Everything else that needs this data — `transform/config/teams.py`,
-`live-scores/config/teams.py`, and `cfb-grid-web`'s
+`live-scores/config/teams.py`, `cbb/transform/config/teams.py` (college
+basketball, which uses it only as an override/fallback on top of CBBD's own
+team list — see `cbb/README.md`), and `cfb-grid-web`'s
 `public/teams_lookup.json` — is *generated* from `teams.json` here, not
 hand-maintained separately. This directory itself is never deployed (it
 lives outside both `transform/`'s and `live-scores/`'s Docker build
