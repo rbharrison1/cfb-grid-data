@@ -51,6 +51,25 @@ def _fetch_endpoint(api_key: str, endpoint: str, params: Dict[str, Any] = None) 
     return data if isinstance(data, list) else [data]
 
 
+# CFBD's metrics/wp/pregame silently truncates a season-wide (no week param)
+# response at exactly 1000 rows -- no error, no pagination hint. Once 2026's
+# posted lines crossed 1000 (around week 9, 2026-10-24) every later week
+# stopped landing, leaving the grid on weeks-old spreads/win probabilities.
+# Full-season requests for these keys are fetched week by week instead.
+# Weeks with no lines posted yet just return [].
+PER_WEEK_FULL_SEASON_KEYS = {"win_prob"}
+FULL_SEASON_WEEKS = range(1, 17)
+
+
+def _fetch_rows(api_key: str, key: str, endpoint: str, params: Dict[str, Any], week: int) -> List[dict]:
+    if week != FULL_SEASON_WEEK or key not in PER_WEEK_FULL_SEASON_KEYS:
+        return _fetch_endpoint(api_key, endpoint, params=params)
+    rows = []
+    for w in FULL_SEASON_WEEKS:
+        rows.extend(_fetch_endpoint(api_key, endpoint, params={**params, "week": w}))
+    return rows
+
+
 def _write_ndjson_to_gcs(storage_client: storage.Client, bucket_name: str, blob_path: str, rows: List[dict]) -> str:
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(blob_path)
@@ -213,7 +232,7 @@ def bq_ingest(request):
         endpoint, params = build_params(year, week)
 
         try:
-            rows = _fetch_endpoint(api_key, endpoint, params=params)
+            rows = _fetch_rows(api_key, key, endpoint, params, week)
         except Exception as e:
             results[key] = {"error": f"fetch failed: {e}"}
             continue
@@ -236,6 +255,13 @@ def bq_ingest(request):
             storage_client, bq_client, project, dataset, bucket_name,
             "tv_schedule", tv_rows, "tv_schedule", year, week, run_ts, ingested_at,
         )
+
+    # The response is always 200 with per-key errors only in the body, which
+    # Cloud Scheduler never surfaces -- log them so a silently failing
+    # endpoint is findable in Cloud Logging (search INGEST_ERROR).
+    for key, result in results.items():
+        if "error" in result:
+            print(f"INGEST_ERROR key={key} year={year} week={week}: {result['error']}")
 
     return (json.dumps(results), 200)
 
