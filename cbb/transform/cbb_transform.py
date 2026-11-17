@@ -1,9 +1,11 @@
 """Turns raw CBBD rows into per-timezone grid game documents.
 
 Produces the same flat document shape cfb-grid-web's grid reads for football
-(see format_game_data in transform/bq_transform.py), minus the fields only the
-football GameModal uses (team schedules, line scores, venue, spread, win
-probability). Differences from football worth knowing:
+(see format_game_data in transform/bq_transform.py), plus what its GameModal
+shows: venue, line scores (per half, finals only), attendance, notes, and a
+schedule *window* per team (the 5 games before this one and the 3 after,
+not the whole 30-game season). No spread or win probability (not ingested).
+Differences from football worth knowing:
 
 - Basketball is navigated by date, not week. Every game gets a `slate_date`
   (its Eastern calendar date), which is also the Mongo write key -- the
@@ -100,7 +102,7 @@ class TeamResolver:
         self.by_id = {t['id']: t for t in cbbd_teams}
         self.unknown = Counter()
 
-    def resolve(self, team_id, name: str) -> Dict[str, Any]:
+    def resolve(self, team_id, name: str, count_unknown: bool = True) -> Dict[str, Any]:
         canonical = TEAM_NAME_SUBSTITUTIONS.get(name)
         cbbd = self.by_id.get(team_id)
 
@@ -120,14 +122,17 @@ class TeamResolver:
         if canonical is not None:
             return {'name': canonical, 'id': _TEAM_ESPN_IDS.get(canonical), 'color': TEAM_COLORS.get(canonical),
                     'conference': None, 'classification': None}
-        self.unknown[name] += 1
+        if count_unknown:
+            self.unknown[name] += 1
         return {'name': name, 'id': None, 'color': None, 'conference': None, 'classification': None}
 
 
-def build_records(final_games: List[dict]) -> Dict[int, str]:
+def build_records(season_games: List[dict]) -> Dict[int, str]:
     """CBBD team id -> '(W-L)' from every final game of the season so far."""
     wins, losses = Counter(), Counter()
-    for g in final_games:
+    for g in season_games:
+        if g.get('status') != 'final':
+            continue
         home_pts, away_pts = g.get('homePoints'), g.get('awayPoints')
         if home_pts is None or away_pts is None or home_pts == away_pts:
             continue
@@ -157,12 +162,81 @@ class RankLookup:
         return current
 
 
+SCHEDULE_BEFORE = 5
+SCHEDULE_AFTER = 3
+
+
+class ScheduleIndex:
+    """Each team's season, ordered by tip-off, so a game's document can carry
+    the games around it (cfb-grid-web's modal shows "last 5 / next 3").
+    Built from every season game, not just the [start, end] being written."""
+
+    def __init__(self, season_games: List[dict], resolver: 'TeamResolver'):
+        self.resolver = resolver
+        self._cache = {}
+        by_team = defaultdict(list)
+        for g in season_games:
+            if g.get('status') in SKIPPED_STATUSES or not g.get('startDate'):
+                continue
+            for side in ('away', 'home'):
+                team_id = g.get(f'{side}TeamId')
+                if team_id is not None:
+                    by_team[team_id].append(g)
+        self.by_team = {
+            team_id: sorted(games, key=lambda g: (parse_utc(g['startDate']), g['id']))
+            for team_id, games in by_team.items()
+        }
+
+    def window(self, team_id, game_id) -> Optional[List[Dict[str, Any]]]:
+        # Same answer for all six timezone copies of a game; compute once.
+        key = (team_id, game_id)
+        if key not in self._cache:
+            self._cache[key] = self._window(team_id, game_id)
+        return self._cache[key]
+
+    def _window(self, team_id, game_id) -> Optional[List[Dict[str, Any]]]:
+        games = self.by_team.get(team_id)
+        if not games:
+            return None
+        idx = next((i for i, g in enumerate(games) if g['id'] == game_id), None)
+        if idx is None:
+            return None
+        picked = games[max(0, idx - SCHEDULE_BEFORE):idx] + games[idx + 1:idx + 1 + SCHEDULE_AFTER]
+        return [self._entry(team_id, g) for g in picked]
+
+    def _entry(self, team_id, g) -> Dict[str, Any]:
+        side, opp = ('home', 'away') if g.get('homeTeamId') == team_id else ('away', 'home')
+        opponent = self.resolver.resolve(g.get(f'{opp}TeamId'), g[f'{opp}Team'], count_unknown=False)
+        mine, theirs = _points(g, side), _points(g, opp)
+        has_score = mine is not None and theirs is not None and mine != theirs
+        return {
+            'game_id': int(g['id']),
+            'date': slate_date_of(parse_utc(g['startDate'])).isoformat(),
+            'opponent': opponent['name'],
+            'opponent_id': opponent['id'],
+            'opponent_color': opponent['color'],
+            'location': 'neutral' if g.get('neutralSite') else side,
+            'result': ('W' if mine > theirs else 'L') if has_score else None,
+            'score': f"{mine} - {theirs}" if has_score else None,
+        }
+
+
+def _line_scores(game: dict, side: str) -> Optional[List[int]]:
+    # Per-half points (plus any OTs), only once the game is final -- an
+    # in-progress or future snapshot can carry partial or 0-filled arrays.
+    if game.get('status') != 'final':
+        return None
+    periods = game.get(f'{side}PeriodPoints')
+    return [int(p) for p in periods] if periods else None
+
+
 def _points(game: dict, side: str):
     # CBBD reports 0-0 for games that haven't been played yet.
     return game.get(f'{side}Points') if game.get('status') == 'final' else None
 
 
-def format_game(game, slate_date, outlet, col, away, home, ranks, records, timezone, start_utc) -> Dict[str, Any]:
+def format_game(game, slate_date, outlet, col, away, home, ranks, records, timezone, start_utc,
+                schedules: Optional['ScheduleIndex'] = None) -> Dict[str, Any]:
     if game.get('startTimeTbd'):
         # CBBD's TBD placeholder is midnight Eastern; converting it would put
         # the game on the previous day west of Eastern. Keep the slate date,
@@ -203,6 +277,18 @@ def format_game(game, slate_date, outlet, col, away, home, ranks, records, timez
         'home_classification': home['classification'],
         'neutral_site': bool(game.get('neutralSite')),
         'season_type': game.get('seasonType'),
+        # Game modal fields (cfb-grid-web GameModal).
+        'away_line_scores': _line_scores(game, 'away'),
+        'home_line_scores': _line_scores(game, 'home'),
+        'venue_name': game.get('venue'),
+        'city': game.get('city'),
+        'state': game.get('state'),
+        'conference_game': bool(game.get('conferenceGame')),
+        'attendance': game.get('attendance') or None,
+        'excitement': game.get('excitement'),
+        'notes': game.get('gameNotes'),
+        'away_team_schedule': schedules.window(game.get('awayTeamId'), game['id']) if schedules else None,
+        'home_team_schedule': schedules.window(game.get('homeTeamId'), game['id']) if schedules else None,
     }
 
 
@@ -233,10 +319,13 @@ def resolve_slot_conflicts(games: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return games
 
 
-def build_documents(games, media, cbbd_teams, rankings, final_games) -> Tuple[Dict[str, List[dict]], Dict[str, Any]]:
-    """Returns ({slate_date 'YYYY-MM-DD': [docs for every timezone]}, stats)."""
+def build_documents(games, media, cbbd_teams, rankings, season_games) -> Tuple[Dict[str, List[dict]], Dict[str, Any]]:
+    """Returns ({slate_date 'YYYY-MM-DD': [docs for every timezone]}, stats).
+    season_games is every game of the season (any status), for records and
+    schedule windows."""
     resolver = TeamResolver(cbbd_teams)
-    records = build_records(final_games)
+    records = build_records(season_games)
+    schedules = ScheduleIndex(season_games, resolver)
     rank_lookup = RankLookup(rankings)
     stats = Counter()
     unmapped_outlets = Counter()
@@ -258,7 +347,7 @@ def build_documents(games, media, cbbd_teams, rankings, final_games) -> Tuple[Di
         ranks = rank_lookup.ranks_on(slate_date)
         stats['games'] += 1
         for tz in TIMEZONES:
-            per_tz[tz].append(format_game(game, slate_date, outlet, col, away, home, ranks, records, tz, start_utc))
+            per_tz[tz].append(format_game(game, slate_date, outlet, col, away, home, ranks, records, tz, start_utc, schedules))
 
     by_slate_date = defaultdict(list)
     for tz_games in per_tz.values():

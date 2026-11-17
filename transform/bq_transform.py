@@ -33,13 +33,29 @@ def load_colors() -> Dict[str, str]:
     return TEAM_COLORS
 
 
+def _eastern_date(start_date) -> str:
+    """'YYYY-MM-DD' of a kickoff in Eastern time. The UTC date (what this
+    used to take) is the next day for any kickoff from 7-8 PM ET on, so a
+    Saturday night game showed as Sunday in the GameModal schedule."""
+    if start_date is None or (not isinstance(start_date, str) and pd.isna(start_date)):
+        return ''
+    ts = pd.Timestamp(start_date)
+    if ts.tzinfo is None:
+        ts = ts.tz_localize('UTC')
+    return ts.tz_convert('America/New_York').strftime('%Y-%m-%d')
+
+
+def _game_id(game) -> Optional[int]:
+    gid = game.get('id')
+    return None if gid is None or pd.isna(gid) else int(gid)
+
+
 def get_team_schedule(all_games: List[dict], team_name: str) -> List[Dict[str, Any]]:
     """Build a team's full-season schedule from the raw_all_games snapshot."""
     schedule = []
     for game in all_games:
         week = game.get('week')
-        start_date = game.get('startDate')
-        date = str(start_date)[:10] if start_date is not None else ''
+        date = _eastern_date(game.get('startDate'))
         home_team = TEAM_NAME_SUBSTITUTIONS.get(game.get('homeTeam'), game.get('homeTeam'))
         away_team = TEAM_NAME_SUBSTITUTIONS.get(game.get('awayTeam'), game.get('awayTeam'))
         neutral_site = bool(game.get('neutralSite', False))
@@ -53,6 +69,7 @@ def get_team_schedule(all_games: List[dict], team_name: str) -> List[Dict[str, A
 
         if team_name == home_team:
             schedule.append({
+                'game_id': _game_id(game),
                 'week': week,
                 'date': date,
                 'opponent': away_team,
@@ -62,6 +79,7 @@ def get_team_schedule(all_games: List[dict], team_name: str) -> List[Dict[str, A
             })
         elif team_name == away_team:
             schedule.append({
+                'game_id': _game_id(game),
                 'week': week,
                 'date': date,
                 'opponent': home_team,
@@ -372,6 +390,18 @@ def _as_list(val):
         return val
 
 
+def _as_int(val) -> Optional[int]:
+    """CFBD lands attendance as a string in raw_games ("105000", sometimes
+    with commas); 0 or unparseable means unknown."""
+    if val is None:
+        return None
+    try:
+        n = int(float(str(val).replace(',', '')))
+    except ValueError:
+        return None
+    return n or None
+
+
 def format_game_data(game: pd.Series, start_window, timezone: str, all_games: List[dict]) -> Dict[str, Any]:
     """Format a single game's data into the required MongoDB document structure."""
 
@@ -440,7 +470,14 @@ def format_game_data(game: pd.Series, start_window, timezone: str, all_games: Li
         'home_conference': clean_value(game['homeConference']),
         'away_team_schedule': away_team_schedule,
         'home_team_schedule': home_team_schedule,
-        'season_type': game['seasonType']
+        'season_type': game['seasonType'],
+        # Game context for cfb-grid-web's GameModal. Optional in the row
+        # (older test fixtures and raw rows may lack them), hence .get().
+        'neutral_site': bool(clean_value(game.get('neutralSite'))),
+        'conference_game': bool(clean_value(game.get('conferenceGame'))),
+        'attendance': _as_int(clean_value(game.get('attendance'))),
+        'excitement': clean_value(game.get('excitementIndex')),
+        'notes': clean_value(game.get('notes')),
     }
 
 

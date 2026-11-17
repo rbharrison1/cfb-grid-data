@@ -3,9 +3,30 @@
 Ported unchanged from cfb-grid-python/mern/python/v2/utils/db.py.
 """
 
-from pymongo import MongoClient
+from pymongo import MongoClient, UpdateOne
 import certifi
 from typing import List, Dict, Any
+
+# Fields a frozen (completed) game still gets refreshed every run: game
+# context for cfb-grid-web's GameModal, never scores, records or status.
+# Without this, games that went final before these fields existed would
+# never get them, and a final game's schedule would stop updating.
+MODAL_REFRESH_FIELDS = (
+    'neutral_site', 'conference_game', 'attendance', 'excitement', 'notes',
+    'away_team_schedule', 'home_team_schedule',
+)
+
+
+def frozen_refresh_ops(data: List[Dict[str, Any]], frozen_ids, slot_filter: Dict[str, Any]) -> List[UpdateOne]:
+    """One $set of MODAL_REFRESH_FIELDS per frozen game present in `data`."""
+    ops = []
+    for game in data:
+        if game.get('game_id') in frozen_ids:
+            fields = {f: game[f] for f in MODAL_REFRESH_FIELDS if f in game}
+            if fields:
+                ops.append(UpdateOne({**slot_filter, 'game_id': game['game_id']}, {'$set': fields}))
+    return ops
+
 
 def write_to_mongodb(uri: str, db_name: str, collection_name: str,
                     data: List[Dict[str, Any]], year: int, week: int, timezone: str,
@@ -58,6 +79,9 @@ def write_to_mongodb(uri: str, db_name: str, collection_name: str,
             frozen_ids = set(collection.distinct('game_id', {**slot_filter, 'completed': True}))
             delete_result = collection.delete_many({**slot_filter, 'completed': {'$ne': True}})
             deleted_count = delete_result.deleted_count
+            refresh = frozen_refresh_ops(data, frozen_ids, slot_filter)
+            if refresh:
+                collection.bulk_write(refresh, ordered=False)
             data = [g for g in data if g.get('game_id') not in frozen_ids]
 
         # Insert new data and get inserted IDs

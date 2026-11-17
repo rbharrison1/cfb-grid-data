@@ -12,7 +12,7 @@ from datetime import date, timedelta
 from typing import Any, Dict, List
 
 import certifi
-from pymongo import MongoClient
+from pymongo import MongoClient, UpdateOne
 
 
 def _dates(start: date, end: date):
@@ -22,11 +22,34 @@ def _dates(start: date, end: date):
         d += timedelta(days=1)
 
 
+# Fields a frozen (completed) game still gets refreshed every run: game
+# context for cfb-grid-web's GameModal, never scores, records or status.
+# Without this, games that went final before these fields existed would
+# never get them, and a final game's schedule window would stop updating.
+MODAL_REFRESH_FIELDS = (
+    'away_line_scores', 'home_line_scores', 'venue_name', 'city', 'state',
+    'conference_game', 'attendance', 'excitement', 'notes',
+    'away_team_schedule', 'home_team_schedule',
+)
+
+
+def frozen_refresh_ops(docs: List[Dict[str, Any]], frozen_ids, slot_filter: Dict[str, Any]) -> List[UpdateOne]:
+    """One $set of MODAL_REFRESH_FIELDS per frozen game per timezone copy."""
+    ops = []
+    for doc in docs:
+        if doc['game_id'] in frozen_ids:
+            fields = {f: doc[f] for f in MODAL_REFRESH_FIELDS if f in doc}
+            if fields:
+                ops.append(UpdateOne({**slot_filter, 'game_id': doc['game_id'], 'timezone': doc['timezone']},
+                                     {'$set': fields}))
+    return ops
+
+
 def write_date_range(uri: str, db_name: str, collection_name: str, season: int,
                      start: date, end: date, docs_by_date: Dict[str, List[Dict[str, Any]]]) -> Dict[str, Dict[str, int]]:
     """Rewrites every slate date in [start, end]. A game already stored as
     completed is frozen: never deleted, never reinserted. Returns per-date
-    {written, deleted, frozen} counts for dates that had any activity."""
+    {written, deleted, frozen_games, frozen_refreshed} counts for dates that had any activity."""
     client = MongoClient(
         uri,
         tlsCAFile=certifi.where(),
@@ -41,11 +64,16 @@ def write_date_range(uri: str, db_name: str, collection_name: str, season: int,
             slot_filter = {'season': season, 'slate_date': slate_date}
             frozen_ids = set(collection.distinct('game_id', {**slot_filter, 'completed': True}))
             deleted = collection.delete_many({**slot_filter, 'completed': {'$ne': True}}).deleted_count
-            docs = [d for d in docs_by_date.get(slate_date, []) if d['game_id'] not in frozen_ids]
+            date_docs = docs_by_date.get(slate_date, [])
+            refresh = frozen_refresh_ops(date_docs, frozen_ids, slot_filter)
+            if refresh:
+                collection.bulk_write(refresh, ordered=False)
+            docs = [d for d in date_docs if d['game_id'] not in frozen_ids]
             if docs:
                 collection.insert_many(docs)
             if docs or deleted or frozen_ids:
-                results[slate_date] = {'written': len(docs), 'deleted': deleted, 'frozen_games': len(frozen_ids)}
+                results[slate_date] = {'written': len(docs), 'deleted': deleted, 'frozen_games': len(frozen_ids),
+                                       'frozen_refreshed': len(refresh)}
         return results
     finally:
         client.close()

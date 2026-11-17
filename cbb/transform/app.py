@@ -82,7 +82,7 @@ def transform_and_load(request):
         media = bq_reader.read_media(bq_client, table("media"), season, start, end)
         teams = bq_reader.read_teams(bq_client, table("teams"), season)
         rankings = bq_reader.read_rankings(bq_client, table("rankings"), season)
-        final_games = bq_reader.read_final_games(bq_client, table("games"), season)
+        season_games = bq_reader.read_season_games(bq_client, table("games"), season)
     except Exception as e:
         return (f"BigQuery read failed: {e}", 502)
 
@@ -90,7 +90,7 @@ def transform_and_load(request):
         return (f"No raw_teams rows for season {season} -- run the ingest with range=season (or teams=1) first.", 409)
 
     try:
-        docs_by_date, stats = cbb_transform.build_documents(games, media, teams, rankings, final_games)
+        docs_by_date, stats = cbb_transform.build_documents(games, media, teams, rankings, season_games)
     except Exception as e:
         return (f"Transform failed: {e}", 500)
 

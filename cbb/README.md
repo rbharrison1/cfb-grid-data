@@ -12,6 +12,7 @@ Cloud Scheduler --> Cloud Run: cfb-grid-cbb-ingest (cbb/ingest)
 Cloud Scheduler --> Cloud Run: cfb-grid-cbb-transform (cbb/transform)
                        |-- read cbb_raw.raw_* (latest _ingested_at per key)
                        |-- outlet -> column, team names/ids/colors, AP rank, W-L record, 6 timezone copies
+                       |-- game modal fields: venue, per-half line scores, attendance, notes, schedule window
                        `-- rewrite each slate date in MongoDB cfb-grid.cbb-games
 ```
 
@@ -68,6 +69,7 @@ There are **no live scores yet**. Finals arrive with the next morning's run. Pha
   - `team_data/teams.json`'s name/color is applied on top **only when its `espn_id` matches**. Its football-oriented aliases aren't always right for basketball; for example, `"Little Rock"` is an alias of Arkansas Baptist there.
   - D1 names not covered by `teams.json` use `display_name()`: "State" becomes "St.", and CBBD's `shortDisplayName` is used when a name is still over 15 characters.
   - Non-D1 opponents (about 260 a season) fall back to `teams.json` by name, else get no logo or color.
-- **Records** are computed from the season's final games in `raw_games`; CBBD has no `/records` endpoint.
+- **Records** are computed from the season's final games in `raw_games`; CBBD has no `/records` endpoint. `bq_reader.read_season_games` reads every game of the season (any status, latest snapshot) for both this and the schedule window below.
+- **Game modal fields** (added 2026-11-17, read by `cfb-grid-web`'s GameModal): `venue_name`/`city`/`state`, `conference_game`, `attendance`, `excitement`, `notes` (CBBD `gameNotes`, e.g. a tournament name), and `away_line_scores`/`home_line_scores` from CBBD's `*PeriodPoints` (halves plus any OTs, **final games only**; a scheduled game's snapshot can carry 0-filled arrays). `away_team_schedule`/`home_team_schedule` are a **window**, not the season: the 5 games before this one and the 3 after, by tip-off, this game left out (`ScheduleIndex` in `cbb_transform.py`; cancelled/postponed games skipped). Entries are `{game_id, date (Eastern slate date), opponent, opponent_id (ESPN id), opponent_color, location, result, score}`, with the score from the team's side. A non-D1 opponent with only one game in the data gets an empty window. No spread or win probability: neither is ingested for basketball. These fields, unlike scores, are refreshed on frozen completed games every run (`MODAL_REFRESH_FIELDS` in `mongo_writer.py`).
 - **AP rank** is the latest poll whose `pollDate` is on or before the game's slate date. CBBD's games carry no week, so football's week-matching doesn't apply. Rows with a null `ranking` are "receiving votes" and are dropped.
 - **Grid geometry:** `GAME_SLOTS = 4` (2-hour blocks). `cfb-grid-web`'s `config/sports.js` CBB `gameSlots` must match. A second game starting less than 4 slots after the previous one in the same column is nudged down (its printed time is unchanged). An exact same-start collision (regional feeds) sends the second game to the BTN overflow column if it's BTN, otherwise to the streaming section.

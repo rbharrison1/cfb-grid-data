@@ -64,17 +64,16 @@ def read_media(client: bigquery.Client, table: str, season: int, start: date, en
     return {row["gameId"]: row.get("broadcasts") or [] for row in _rows(client, sql, _date_range_params(season, start, end))}
 
 
-def read_final_games(client: bigquery.Client, table: str, season: int) -> List[dict]:
-    """Every final game of the season (latest snapshot), for computing W-L
-    records -- CBBD has no /records endpoint like CFBD's."""
+def read_season_games(client: bigquery.Client, table: str, season: int) -> List[dict]:
+    """Every game of the season (latest snapshot), played or not. Finals give
+    the W-L records (CBBD has no /records endpoint like CFBD's); the whole
+    list gives each team's schedule window for the game modal, which needs
+    games outside the [start, end] range being written."""
     sql = f"""
         SELECT TO_JSON_STRING(t) AS j
-        FROM (
-          SELECT * FROM `{table}`
-          WHERE season = @season
-          QUALIFY ROW_NUMBER() OVER (PARTITION BY id ORDER BY _ingested_at DESC) = 1
-        ) t
-        WHERE status = 'final'
+        FROM `{table}` t
+        WHERE season = @season
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY id ORDER BY _ingested_at DESC) = 1
     """
     return _rows(client, sql, [bigquery.ScalarQueryParameter("season", "INT64", season)])
 
