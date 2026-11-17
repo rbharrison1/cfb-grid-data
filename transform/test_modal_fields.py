@@ -82,3 +82,24 @@ def test_frozen_games_get_only_modal_fields_refreshed():
     fields = ops[0]._doc['$set']
     assert fields == {'notes': 'Bowl', 'neutral_site': True, 'away_team_schedule': [{'date': '2026-11-28'}]}
     assert 'away_points' not in fields and 'completed' not in fields
+
+
+def test_context_fields_survive_the_merge():
+    # The merge keeps a fixed column list from games_df; the context fields
+    # were once dropped there, so every document got False/None.
+    from bq_transform import process_and_merge_dataframes
+    games = pd.DataFrame([{
+        'id': 1, 'season': 2026, 'week': 11, 'startDate': pd.Timestamp('2026-11-14T17:00:00Z'),
+        'startTimeTBD': False, 'venueId': 5, 'awayTeam': 'Away', 'homeTeam': 'Home', 'awayId': 1, 'homeId': 2,
+        'awayPoints': 10, 'homePoints': 20, 'awayLineScores': [10], 'homeLineScores': [20], 'completed': True,
+        'awayClassification': 'fbs', 'awayConference': 'SEC', 'homeClassification': 'fbs',
+        'homeConference': 'SEC', 'seasonType': 'regular',
+        'neutralSite': True, 'conferenceGame': True, 'attendance': '90000', 'excitementIndex': 4.2, 'notes': 'Rivalry',
+    }])
+    media = pd.DataFrame([{'id': 1, 'outlet': 'ESPN'}])
+    venues = pd.DataFrame([{'id': 5, 'name': 'Stadium', 'city': 'City', 'state': 'ST', 'countryCode': 'US'}])
+    merged, _ = process_and_merge_dataframes(games, media, pd.DataFrame(), venues, pd.DataFrame(),
+                                             pd.DataFrame(), pd.DataFrame())
+    row = merged.iloc[0]
+    assert bool(row['neutralSite']) and bool(row['conferenceGame'])
+    assert row['excitementIndex'] == 4.2 and row['notes'] == 'Rivalry' and row['attendance'] == '90000'

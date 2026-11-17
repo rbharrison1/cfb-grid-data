@@ -259,7 +259,9 @@ def process_and_merge_dataframes(games_df: pd.DataFrame, media_df: pd.DataFrame,
                         'awayPoints', 'homePoints', 'awayLineScores',
                         'homeLineScores', 'completed',
                         'awayClassification', 'awayConference',
-                        'homeClassification', 'homeConference', 'seasonType']]
+                        'homeClassification', 'homeConference', 'seasonType',
+                        # GameModal context fields (read_games selects them).
+                        'neutralSite', 'conferenceGame', 'attendance', 'excitementIndex', 'notes']]
 
     # Media data (CFBD games/media) -- primary outlet source
     media = media_df[['id', 'outlet']]
