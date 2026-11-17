@@ -207,9 +207,9 @@ def match_ncaa_games(
 
     Unmatched games are skipped, not guessed at -- mirrors
     tv_schedule_match.py's philosophy. Expected/benign causes: an FCS
-    opponent, or a real NCAA game that simply has no Mongo doc because it
-    had no outlet mapping (games with no outlet are dropped from Mongo
-    entirely -- see CLAUDE.md's "games dropped if outlet is null" gotcha).
+    opponent, or a real NCAA game that simply has no Mongo doc because its
+    outlet doesn't map to a grid column (games with no outlet at all are
+    kept since 2026-11-17 -- see CLAUDE.md's no-outlet gotcha).
     """
     mongo_names = {name for pair in game_lookup for name in pair}
     matched: List[dict] = []

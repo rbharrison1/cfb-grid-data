@@ -30,7 +30,7 @@ Cloud Scheduler --> Cloud Run: cfb-grid-cbb-transform (cbb/transform)
 - `season`, `start`, `end`, `range=season`, `dataset`: same meaning as ingest.
 - `collection`: default env `MONGO_COLLECTION`. If that's unset, it defaults to **`cbb-games_test`**, so production has to be opted into.
 - The response includes:
-  - `games` (written), `no_broadcast` (dropped)
+  - `games` (written), `no_broadcast` (written with `outlet`/`col` null; listed under the site's "Not Televised & TBD" section)
   - `unmapped_outlets`: broadcast names not in `config/networks.py`; watch this
   - `teams_without_id`: opponents with no logo id
   - per-date write counts
@@ -56,11 +56,12 @@ There are **no live scores yet**. Finals arrive with the next morning's run. Pha
 - **`/games` and `/games/media` cap at 3,000 rows per call.** A busy month is about 1,600 games, so full-season requests are split by calendar month (`month_chunks`). The range params (`startDateRange`/`endDateRange`) are UTC timestamps; the ingest pads them to cover whole Eastern days, and the transform filters on the exact Eastern date.
 - **`_strip_empty` is copied from the football ingest on purpose.** Every score/elo/period field is null until a game is played, and BigQuery autodetect would lock those columns as STRING (see the root `CLAUDE.md`). Because the stripped columns may not exist yet, `bq_reader.py` selects whole rows with `TO_JSON_STRING` instead of naming columns.
 - **`slate_date` is the Eastern calendar date and the Mongo write key.** Writes are delete-then-insert per `(season, slate_date)`, covering all six timezone docs at once. Every date in the range is cleared, including dates with no games this run. A game already stored `completed: true` is frozen, the same as football.
-- **TBD tip times:** CBBD sets `startTimeTbd: true` with a midnight-Eastern placeholder (`05:00Z`). The transform keeps the slate date in every timezone copy (converting it would push the game to the previous day out West). It stores `time: "TBD"`, `start: null`, and puts the game in the streaming section.
+- **TBD tip times:** CBBD sets `startTimeTbd: true` with a midnight-Eastern placeholder (`05:00Z`). The transform keeps the slate date in every timezone copy (converting it would push the game to the previous day out West). It stores `time: "TBD"`, `start: null`, and the game's real `col`. cfb-grid-web lists any `start: null` game in its "Not Televised & TBD" section. Before 2026-11-17 these games were forced into the streaming section (`col: 18`).
 - **Outlet mapping (`config/networks.py`):**
   - It was built from a full inventory of every `broadcastName` CBBD returned for 2025-26 plus Nov 2026: 92 names across ~7,900 games, with ~14% of games having no broadcast at all.
   - Column numbers reuse football's where the network is the same (12 = BTN overflow, 18 = streaming section).
   - Unlike football, an outlet with no column is **not dropped**. ESPN+, conference platforms, regional sports networks and local stations all go to the streaming section; only radio-only broadcasts are ignored.
+  - A game with no broadcast at all is also kept, with `outlet`/`col` null; before 2026-11-17 it was dropped. `resolve_slot_conflicts` skips null-column games.
   - For a game with several broadcasts, a column network wins over a streaming one (e.g. Army @ Duke: ESPNU over Patriot League TV).
 - **Team identity:** CBBD's `/teams` (D1 only, 365 teams) is the primary source. Its `sourceId` is the ESPN id, which is also the logo filename in `cfb-grid-web/public/logos/`.
   - `team_data/teams.json`'s name/color is applied on top **only when its `espn_id` matches**. Its football-oriented aliases aren't always right for basketball; for example, `"Little Rock"` is an alias of Arkansas Baptist there.

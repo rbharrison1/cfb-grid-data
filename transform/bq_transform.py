@@ -73,15 +73,24 @@ def get_team_schedule(all_games: List[dict], team_name: str) -> List[Dict[str, A
     return schedule
 
 
+_FB_NETWORK_SPLIT_RE = re.compile(r'/|\s+or\s+', re.IGNORECASE)
+
+
 def _normalize_network_name(value):
     """Applies the same NETWORK_DISPLAY_MAPPINGS taxonomy CFBD's outlet names
     use to fbschedules.com's network strings, which additionally include
-    simulcast combos (e.g. 'NBC/Peacock', 'TNT/HBO Max') -- the primary
-    broadcast network (first segment) is what NETWORK_COLUMNS keys on."""
+    simulcast combos (e.g. 'NBC/Peacock', 'TNT/HBO Max') and not-yet-decided
+    picks (e.g. 'FOX or FS1', 'ABC or ESPN') -- the first-listed network is
+    what NETWORK_COLUMNS keys on.
+
+    Returns None for anything that still isn't a grid network (e.g. 'TV TBA'),
+    so match_outlets/combine_first fall back to CFBD's outlet instead of a
+    placeholder overriding it and getting the game dropped."""
     if value is None or (isinstance(value, float) and pd.isna(value)):
         return value
-    primary = str(value).split('/')[0].strip()
-    return NETWORK_DISPLAY_MAPPINGS.get(primary, primary)
+    primary = _FB_NETWORK_SPLIT_RE.split(str(value))[0].strip()
+    primary = NETWORK_DISPLAY_MAPPINGS.get(primary, primary)
+    return primary if primary in NETWORK_COLUMNS else None
 
 
 _FB_TIME_RE = re.compile(r'^(\d{1,2}):(\d{2})\s*(am|pm)$', re.IGNORECASE)
@@ -140,11 +149,13 @@ def _apply_fbschedules_schedule(df: pd.DataFrame, fb_dates: Dict[int, str], fb_t
 
     Runs for every matched game regardless of whether CFBD already had a
     non-midnight startDate -- fbschedules wins outright, not just as a
-    TBD-placeholder filler."""
+    TBD-placeholder filler. A game that gets a real fbschedules time also has
+    its startTimeTBD flag cleared, since it's no longer a placeholder."""
     if not fb_times or df.empty:
         return df
 
     df = df.copy()
+    has_tbd_flag = 'startTimeTBD' in df.columns
     for idx, row in df.iterrows():
         game_id = row['id']
         parsed_time = _parse_fbschedules_time(fb_times.get(game_id))
@@ -159,6 +170,8 @@ def _apply_fbschedules_schedule(df: pd.DataFrame, fb_dates: Dict[int, str], fb_t
         corrected_et = datetime.combine(base_date, time(hour=hour, minute=minute))
         corrected_utc = corrected_et.replace(tzinfo=_EASTERN_TZ).astimezone(ZoneInfo('UTC')).replace(tzinfo=None)
         df.at[idx, 'startDate'] = pd.Timestamp(corrected_utc, tz='UTC')
+        if has_tbd_flag:
+            df.at[idx, 'startTimeTBD'] = False
 
     return df
 
@@ -193,7 +206,7 @@ def process_and_merge_dataframes(games_df: pd.DataFrame, media_df: pd.DataFrame,
     """Merge and process all dataframes into a single comprehensive dataset.
 
     Returns (result_df, tv_schedule_unmatched_rows)."""
-    result = games_df[['id', 'season', 'week', 'startDate', 'venueId',
+    result = games_df[['id', 'season', 'week', 'startDate', 'startTimeTBD', 'venueId',
                         'awayTeam', 'homeTeam', 'awayId', 'homeId',
                         'awayPoints', 'homePoints', 'awayLineScores',
                         'homeLineScores', 'completed',
@@ -279,13 +292,30 @@ def apply_display_mappings(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def _is_time_tbd(game) -> bool:
+    # Missing/NA (older ingests, or a game that never had the flag) means a real time.
+    value = game.get('startTimeTBD')
+    return False if value is None or pd.isna(value) else bool(value)
+
+
 def add_time_information(df: pd.DataFrame, timezone: str) -> pd.DataFrame:
-    """Add formatted time information to the DataFrame."""
+    """Add formatted time information to the DataFrame.
+
+    A startTimeTBD game's startDate is CFBD's midnight-Eastern placeholder, so
+    converting it would put the game on the previous day west of Eastern. It
+    keeps its Eastern date in every timezone instead, with time/printTime
+    None/'TBD' (no grid slot -- the site lists it under Not Televised & TBD)."""
     df = df.copy()
+    tbd = df.apply(_is_time_tbd, axis=1) if not df.empty else pd.Series(dtype=bool)
     df['dateTimeStr'] = df['startDate'].apply(lambda x: adjust_datetime_for_timezone(x, timezone))
     df['time'] = df['dateTimeStr'].dt.strftime('%H:%M')
     df['date'] = df['dateTimeStr'].dt.strftime('%Y-%m-%d')
     df['printTime'] = df['dateTimeStr'].dt.strftime('%I:%M %p')
+    if tbd.any():
+        eastern_dates = df.loc[tbd, 'startDate'].apply(lambda x: adjust_datetime_for_timezone(x, 'E'))
+        df.loc[tbd, 'date'] = eastern_dates.dt.strftime('%Y-%m-%d')
+        df.loc[tbd, 'time'] = None
+        df.loc[tbd, 'printTime'] = 'TBD'
     return df
 
 
@@ -381,7 +411,7 @@ def resolve_btn_conflicts(games: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Resolve conflicts where multiple BTN games are in the same time slot."""
     time_slots = defaultdict(list)
     for game in games:
-        if game['outlet'] == 'BTN':
+        if game['outlet'] == 'BTN' and game['start'] is not None:
             time_slots[(game['date'], game['start'])].append(game)
 
     for slot_games in time_slots.values():
@@ -397,7 +427,7 @@ def adjust_close_start_times(games: List[Dict[str, Any]]) -> List[Dict[str, Any]
     """Nudge apart start times that are too close together within the same column/date."""
     col_date_games = defaultdict(list)
     for game in games:
-        if game['col'] is None or game['col'] == 18:
+        if game['col'] is None or game['col'] == 18 or game['start'] is None:
             continue
         col_date_games[(game['col'], game['date'])].append(game)
 
@@ -418,20 +448,18 @@ def adjust_close_start_times(games: List[Dict[str, Any]]) -> List[Dict[str, Any]
 def generate_game_list(df: pd.DataFrame, timezone: str, all_games: List[dict]) -> List[Dict[str, Any]]:
     """Generate the final game list for a timezone, with conflict resolution applied.
 
-    Games with no TV outlet (neither CFBD nor fbschedules had one), or whose
-    outlet doesn't map to a grid column (NETWORK_COLUMNS has no entry for
-    it), are dropped entirely -- MongoDB should only ever hold games that can
-    actually be placed on the grid."""
+    Games with no TV outlet (neither CFBD nor fbschedules had one) are kept
+    with outlet/col None -- cfb-grid-web lists them, along with TBD-time games
+    (start None), in its Not Televised & TBD section. A game whose outlet
+    exists but doesn't map to a grid column (NETWORK_COLUMNS has no entry for
+    it) is still dropped, since it isn't actually untelevised."""
     game_list = []
     for _, game in df.iterrows():
-        if pd.isna(game.get('outlet')):
-            continue
-
         start_window = None
         if pd.notna(game.get('time')):
             start_window = get_time_window(game['time'])
         formatted = format_game_data(game, start_window, timezone, all_games)
-        if formatted['col'] is None:
+        if formatted['outlet'] is not None and formatted['col'] is None:
             continue
         game_list.append(formatted)
 

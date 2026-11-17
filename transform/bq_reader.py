@@ -51,14 +51,14 @@ def _result_or_empty(query_job):
 
 def read_games(client: bigquery.Client, table: str, year: int, week: int) -> pd.DataFrame:
     sql = f"""
-        SELECT id, season, week, startDate, venueId, awayTeam, homeTeam, awayId, homeId,
+        SELECT id, season, week, startDate, startTimeTBD, venueId, awayTeam, homeTeam, awayId, homeId,
                awayPoints, homePoints, awayLineScores, homeLineScores, completed,
                awayClassification, awayConference, homeClassification, homeConference, seasonType
         FROM `{table}`
         WHERE _year = @year AND week = @week
         QUALIFY ROW_NUMBER() OVER (PARTITION BY id ORDER BY _ingested_at DESC) = 1
     """
-    columns = ["id", "season", "week", "startDate", "venueId", "awayTeam", "homeTeam", "awayId", "homeId",
+    columns = ["id", "season", "week", "startDate", "startTimeTBD", "venueId", "awayTeam", "homeTeam", "awayId", "homeId",
                "awayPoints", "homePoints", "awayLineScores", "homeLineScores", "completed",
                "awayClassification", "awayConference", "homeClassification", "homeConference", "seasonType"]
     return _to_dataframe_or_empty(_run(client, sql, year=year, week=week), columns)

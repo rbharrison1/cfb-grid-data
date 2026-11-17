@@ -11,7 +11,9 @@ probability). Differences from football worth knowing:
 - A game takes GAME_SLOTS (4) half-hour rows on the grid, not football's 6;
   cfb-grid-web's CBB config uses the same value.
 - Outlets with no grid column go to the streaming section instead of being
-  dropped (see config/networks.py).
+  dropped (see config/networks.py). Games with no broadcast at all are kept
+  with outlet/col None, and TBD tip times get start None; cfb-grid-web lists
+  both in its Not Televised & TBD section.
 - D1 team identity comes from CBBD's own /teams list (sourceId is the ESPN
   id, which is also the logo filename). team_data's teams.json is applied on
   top only when its ESPN id agrees -- its football-oriented aliases are not
@@ -163,9 +165,9 @@ def _points(game: dict, side: str):
 def format_game(game, slate_date, outlet, col, away, home, ranks, records, timezone, start_utc) -> Dict[str, Any]:
     if game.get('startTimeTbd'):
         # CBBD's TBD placeholder is midnight Eastern; converting it would put
-        # the game on the previous day west of Eastern. Keep the slate date and
-        # list it in the streaming section with a 'TBD' time.
-        local_date, time_str, start, col = slate_date.isoformat(), 'TBD', None, STREAMING_COL
+        # the game on the previous day west of Eastern. Keep the slate date,
+        # with a 'TBD' time and no grid slot.
+        local_date, time_str, start = slate_date.isoformat(), 'TBD', None
     else:
         local = adjust_datetime_for_timezone(start_utc, timezone)
         local_date = local.strftime('%Y-%m-%d')
@@ -213,7 +215,7 @@ def resolve_slot_conflicts(games: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     don't overlap -- its printed time is unchanged."""
     by_slot = defaultdict(list)
     for g in games:
-        if g['col'] != STREAMING_COL and g['start'] is not None:
+        if g['col'] not in (None, STREAMING_COL) and g['start'] is not None:
             by_slot[(g['date'], g['col'], g['start'])].append(g)
     for slot_games in by_slot.values():
         for i, g in enumerate(slot_games[1:], start=1):
@@ -221,7 +223,7 @@ def resolve_slot_conflicts(games: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
     by_col = defaultdict(list)
     for g in games:
-        if g['col'] != STREAMING_COL and g['start'] is not None:
+        if g['col'] not in (None, STREAMING_COL) and g['start'] is not None:
             by_col[(g['date'], g['col'])].append(g)
     for col_games in by_col.values():
         col_games.sort(key=lambda g: g['start'])
@@ -248,7 +250,6 @@ def build_documents(games, media, cbbd_teams, rankings, final_games) -> Tuple[Di
         unmapped_outlets.update(unmapped)
         if outlet is None:
             stats['no_broadcast'] += 1
-            continue
 
         start_utc = parse_utc(game['startDate'])
         slate_date = slate_date_of(start_utc)
