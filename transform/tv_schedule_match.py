@@ -69,11 +69,15 @@ def _resolve_cfbd_name(name: str, raw_names: Set[str], display_lookup: Dict[str,
 
 
 def match_outlets(
-    games_df: pd.DataFrame, tv_df: pd.DataFrame
+    games_df: pd.DataFrame, tv_df: pd.DataFrame, value_column: str = "network"
 ) -> Tuple[Dict[int, str], Dict[int, str], Dict[int, str], List[dict]]:
     """Returns ({gameId: network}, {gameId: raw fbschedules time string},
     {gameId: raw fbschedules date string}, [unmatched tv_df rows as dicts])
     for the given (already week-scoped) games_df and tv_df.
+
+    `value_column` picks which tv_df column fills the first dict -- the
+    transform also passes 'network_options' to get each game's undecided
+    network list through the same name matching.
 
     A row only lands in `unmatched` if its team names couldn't be resolved to
     a CFBD game at all, or it resolved but had neither a network, a time, nor
@@ -100,8 +104,9 @@ def match_outlets(
             unmatched.append(row._asdict())
             continue
 
-        if row.network:
-            outlets[game_id] = row.network
+        value = getattr(row, value_column)
+        if value:
+            outlets[game_id] = value
         if row.time:
             fb_times[game_id] = row.time
         if row.date:

@@ -67,3 +67,27 @@ def test_fbschedules_time_clears_tbd_flag():
     result = _apply_fbschedules_schedule(df, {1: 'Saturday, November 28'}, {1: '3:30pm'})
     assert not result.loc[0, 'startTimeTBD']
     assert result.loc[0, 'startDate'] == pd.Timestamp('2026-11-28T20:30:00Z')
+
+
+def test_undecided_network_options():
+    from bq_transform import _network_options
+    assert _network_options('ABC or ESPN') == ['ABC', 'ESPN']
+    assert _network_options('FS1 or NBC') == ['FS1', 'NBC']
+    assert _network_options('ESPN/2/ACCN') == ['ESPN', 'ESPN2', 'ACCN']
+    assert _network_options('ESPN/2 or ACCN') == ['ESPN', 'ESPN2', 'ACCN']
+
+
+def test_simulcasts_and_single_networks_have_no_options():
+    from bq_transform import _network_options
+    for value in ['NBC/Peacock', 'CBS/Paramount+', 'TNT/truTV', 'ABC/Disney+', 'ESPN+/SWX',
+                  'CBSSN or TBD', 'Flex Game', 'TV TBA', 'ESPN', None]:
+        assert _network_options(value) is None, value
+
+
+def test_outlet_options_reach_the_document():
+    row = _game(1, 'ABC', '2026-11-28T05:00:00Z', tbd=True)
+    row['outletOptions'] = ['ABC', 'ESPN']
+    game = _games_for([row], 'E')[1]
+    assert game['outlet'] == 'ABC'
+    assert game['outlet_options'] == ['ABC', 'ESPN']
+    assert _games_for([_game(2, 'ABC', '2026-11-28T19:00:00Z')], 'E')[2]['outlet_options'] is None

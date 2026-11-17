@@ -93,6 +93,36 @@ def _normalize_network_name(value):
     return primary if primary in NETWORK_COLUMNS else None
 
 
+_FB_OR_RE = re.compile(r'\s+or\s+', re.IGNORECASE)
+_STREAMING_COL = 18
+# ESPN's undecided-pick shorthand, e.g. 'ESPN/2/ACCN' = ESPN, ESPN2, or ACCN.
+_ESPN_SUFFIXES = {'2': 'ESPN2', 'U': 'ESPNU'}
+
+
+def _network_options(value):
+    """The networks an undecided fbschedules pick could land on, in listed
+    order, or None if the game isn't undecided. 'ABC or ESPN' is explicit;
+    slashes usually mean a simulcast ('NBC/Peacock', 'CBS/Paramount+'), so a
+    slash-only string only counts as undecided when it names two or more
+    distinct linear-TV grid columns (ESPN's 'ESPN/2/ACCN' shorthand) --
+    two linear networks never simulcast a regular-season game in this data."""
+    if not isinstance(value, str):
+        return None
+    options = []
+    for part in _FB_OR_RE.split(value):
+        for name in part.split('/'):
+            name = name.strip()
+            name = _ESPN_SUFFIXES.get(name.upper(), name) if options and options[-1].startswith('ESPN') else name
+            name = NETWORK_DISPLAY_MAPPINGS.get(name, name)
+            if NETWORK_COLUMNS.get(name, _STREAMING_COL) != _STREAMING_COL and name not in options:
+                options.append(name)
+    if len(options) < 2:
+        return None
+    if not _FB_OR_RE.search(value) and len({NETWORK_COLUMNS[o] for o in options}) < 2:
+        return None
+    return options
+
+
 _FB_TIME_RE = re.compile(r'^(\d{1,2}):(\d{2})\s*(am|pm)$', re.IGNORECASE)
 _FB_DATE_RE = re.compile(r'^[A-Za-z]+,\s*([A-Za-z]+)\s+(\d{1,2})$')
 
@@ -223,10 +253,16 @@ def process_and_merge_dataframes(games_df: pd.DataFrame, media_df: pd.DataFrame,
     # outlet/startDate is only kept as a fallback for whichever games/fields
     # fbschedules didn't match or didn't have a parseable value for (see
     # tv_schedule_match.py and _apply_fbschedules_schedule).
+    # outletOptions: every network an undecided pick ('ABC or ESPN') could
+    # land on; outlet stays the first-listed one, which places the game.
+    result['outletOptions'] = None
     if not tv_df.empty:
-        tv_df = tv_df.assign(network=tv_df['network'].map(_normalize_network_name))
+        tv_df = tv_df.assign(network_options=tv_df['network'].map(_network_options),
+                             network=tv_df['network'].map(_normalize_network_name))
         outlet_overrides, fb_times, fb_dates, unmatched_tv_rows = tv_schedule_match.match_outlets(games_df, tv_df)
         result['outlet'] = result['id'].map(outlet_overrides).combine_first(result['outlet'])
+        outlet_options = tv_schedule_match.match_outlets(games_df, tv_df, value_column='network_options')[0]
+        result['outletOptions'] = result['id'].map(lambda game_id: outlet_options.get(game_id))
         result = _apply_fbschedules_schedule(result, fb_dates, fb_times)
     else:
         unmatched_tv_rows = []
@@ -376,6 +412,7 @@ def format_game_data(game: pd.Series, start_window, timezone: str, all_games: Li
         'date': game['date'],
         'time': formatted_time,
         'outlet': outlet,
+        'outlet_options': game.get('outletOptions') if isinstance(game.get('outletOptions'), list) else None,
         'away_team': away_team,
         'home_team': home_team,
         'away_id': int(game['awayId']),
