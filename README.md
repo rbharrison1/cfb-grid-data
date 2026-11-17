@@ -170,7 +170,7 @@ See `SECRET_SAMPLE.md` for the full list and setup notes. The workflow never han
 
 The second stage, in `transform/` — its own Cloud Run service (`cfb-grid-transform`), deployed separately from the ingest service above and kept private (not public like ingest).
 
-Reads the `raw_*` BigQuery tables ingest lands, merges/enriches them (outlet/date/time from fbschedules.com where available, falling back to CFBD; AP Top 25 rankings, team records, venues, colors, per-timezone formatting and grid-column placement), and writes the final game documents into MongoDB (`cfb-grid.<collection>`, default collection `games`).
+Reads the `raw_*` BigQuery tables ingest lands, merges/enriches them (outlet/date/time from fbschedules.com where available, falling back to CFBD; AP Top 25 rankings, team records, venues, colors, per-timezone formatting and grid-column placement), and writes the final game documents into MongoDB (`cfb-grid.<collection>`, default collection `games`). Games with no outlet are written with `outlet`/`col` null, and TBD kickoffs with `time: "TBD"`/`start: null`. Undecided fbschedules network picks ("ABC or ESPN") also carry `outlet_options`. cfb-grid-web lists all three in its "Not Televised & TBD" section; see `CLAUDE.md`.
 
 ### Structure
 
