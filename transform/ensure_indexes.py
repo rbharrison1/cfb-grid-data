@@ -24,6 +24,10 @@ def ensure_indexes(uri: str, db_name: str = 'cfb-grid', collection_name: str = '
         collection.create_index([("date", -1)])
         collection.create_index([("completed", 1)])
         collection.create_index([("season", 1), ("week", 1), ("away_team", 1), ("home_team", 1)])
+        # mongo_writer's frozen-game refresh (one update per game per
+        # timezone) and live-scores' patch both look games up by game_id;
+        # without this every one of those scans its whole (season, week).
+        collection.create_index([("game_id", 1), ("timezone", 1)])
         # cfb-grid-server's routes/game.mjs queries this collection with
         # .find({date/outlet}).sort({date: 1, print_time: 1}) on every one of
         # its GET routes (/, /:outlet, /date/:date). None of the indexes

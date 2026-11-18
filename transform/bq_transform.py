@@ -9,6 +9,7 @@ single camelCase shape instead of the legacy dual snake_case/camelCase
 fallback (BigQuery only ever produces one shape).
 """
 
+import functools
 import re
 from collections import defaultdict
 from datetime import datetime, time
@@ -39,6 +40,14 @@ def _eastern_date(start_date) -> str:
     Saturday night game showed as Sunday in the GameModal schedule."""
     if start_date is None or (not isinstance(start_date, str) and pd.isna(start_date)):
         return ''
+    return _eastern_date_of(start_date)
+
+
+# get_team_schedule walks the whole season (~3,600 games) for both teams of
+# every game in all six timezones, so the same kickoff is converted millions
+# of times per week; uncached, this made each weekly transform ~4x slower.
+@functools.lru_cache(maxsize=None)
+def _eastern_date_of(start_date) -> str:
     ts = pd.Timestamp(start_date)
     if ts.tzinfo is None:
         ts = ts.tz_localize('UTC')

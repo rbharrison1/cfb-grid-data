@@ -89,5 +89,7 @@ def ensure_indexes(uri: str, db_name: str = 'cfb-grid', collection_name: str = '
         collection.create_index([('date', 1), ('start', 1)])
         collection.create_index([('outlet', 1), ('date', 1), ('start', 1)])
         collection.create_index([('season', 1), ('slate_date', 1), ('completed', 1)])
+        # The frozen-game refresh updates one doc per game per timezone.
+        collection.create_index([('game_id', 1), ('timezone', 1)])
     finally:
         client.close()
