@@ -180,6 +180,7 @@ Reads the `raw_*` BigQuery tables ingest lands, merges/enriches them (outlet/dat
 - `tv_schedule_match.py` - matches fbschedules.com rows to CFBD games by team name, surfacing fbschedules' outlet/date/time as overlay dicts keyed by CFBD game id (CFBD's own data is the fallback, applied in `bq_transform.py`).
 - `mongo_writer.py` - writes final game documents to MongoDB (delete-then-insert per `(season, week, timezone)` on overwrite).
 - `config/networks.py` - network display-name and grid-column mapping table.
+- `config/outlet_overrides.py` - hand-set outlets keyed by CFBD game id, for games fbschedules and CFBD both have wrong. They beat both sources, and the grid column follows from the outlet.
 - `config/teams.py`, `config/teams.json` - team display-name/alias/color lookup, generated from `../team_data/teams.json` — see `../team_data/README.md`. Do not hand-edit either file.
 
 ### Usage

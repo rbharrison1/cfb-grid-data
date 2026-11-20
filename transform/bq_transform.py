@@ -20,6 +20,7 @@ import pandas as pd
 
 import tv_schedule_match
 from config.networks import NETWORK_COLUMNS, NETWORK_DISPLAY_MAPPINGS
+from config.outlet_overrides import OUTLET_OVERRIDES
 from config.teams import TEAM_NAME_SUBSTITUTIONS, TEAM_COLORS
 from time_utils import get_time_window, adjust_datetime_for_timezone
 
@@ -148,6 +149,17 @@ def _network_options(value):
     if not _FB_OR_RE.search(value) and len({NETWORK_COLUMNS[o] for o in options}) < 2:
         return None
     return options
+
+
+def _apply_outlet_overrides(df: pd.DataFrame, overrides: Dict[int, str] = OUTLET_OVERRIDES) -> pd.DataFrame:
+    """Hand-set outlets from config/outlet_overrides.py, winning over both
+    fbschedules and CFBD. An overridden game's network is settled, so any
+    undecided-pick outletOptions from fbschedules are cleared too."""
+    mask = df['id'].isin(overrides)
+    if mask.any():
+        df.loc[mask, 'outlet'] = df.loc[mask, 'id'].map(overrides)
+        df.loc[mask, 'outletOptions'] = None
+    return df
 
 
 _FB_TIME_RE = re.compile(r'^(\d{1,2}):(\d{2})\s*(am|pm)$', re.IGNORECASE)
@@ -295,6 +307,7 @@ def process_and_merge_dataframes(games_df: pd.DataFrame, media_df: pd.DataFrame,
         result = _apply_fbschedules_schedule(result, fb_dates, fb_times)
     else:
         unmatched_tv_rows = []
+    result = _apply_outlet_overrides(result)
 
     result = _split_off_week_zero(result)
 
