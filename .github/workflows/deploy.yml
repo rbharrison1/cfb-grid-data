@@ -34,8 +34,8 @@ jobs:
         run: |
           python -m py_compile app.py bq_ingest.py
           python -m py_compile transform/app.py transform/bq_reader.py transform/bq_transform.py transform/mongo_writer.py transform/time_utils.py
-          python -m py_compile cbb/ingest/app.py cbb/ingest/bq_ingest.py
-          python -m py_compile cbb/transform/app.py cbb/transform/bq_reader.py cbb/transform/cbb_transform.py cbb/transform/mongo_writer.py cbb/transform/time_utils.py cbb/transform/config/networks.py
+          python -m py_compile cbb/ingest/app.py cbb/ingest/bq_ingest.py cbb/ingest/ratings_ingest.py
+          python -m py_compile cbb/transform/app.py cbb/transform/bq_reader.py cbb/transform/cbb_transform.py cbb/transform/mongo_writer.py cbb/transform/time_utils.py cbb/transform/config/networks.py cbb/transform/ratings_match.py cbb/transform/config/ratings_aliases.py
 
       - name: Authenticate to Google Cloud (OIDC)
         uses: google-github-actions/auth@v2

@@ -21,6 +21,8 @@ import requests
 
 from google.cloud import bigquery, storage
 
+import ratings_ingest
+
 CBBD_API_BASE = "https://api.collegebasketballdata.com"
 
 EASTERN = ZoneInfo("America/New_York")
@@ -181,6 +183,8 @@ def bq_ingest(request):
       - start / end (YYYY-MM-DD Eastern dates; default yesterday .. +21 days)
       - range ('season' to ingest the whole season in monthly chunks, plus /teams)
       - teams (any value: also refresh /teams on a date-range run)
+      - ratings ('false' to skip the T-Rank/NET snapshots; they run by default
+        on in-season date-range runs only, see ratings_ingest.py)
       - dataset (BigQuery dataset name, required)
       - bucket (GCS landing bucket, required)
 
@@ -266,6 +270,31 @@ def bq_ingest(request):
             results[key] = {"error": f"fetch failed: {e}"}
             continue
         results[key] = land(key, rows, endpoint, "season")
+
+    # Team ratings snapshots (T-Rank, NET): one request per site per day, so
+    # only on the daily run -- not the weekly full-season one -- and only in
+    # season. A failure here never affects the games data above.
+    in_season = season_bounds(season)[0] <= eastern_today() <= season_bounds(season)[1]
+    ratings_on = str(_param("ratings", "true")).strip().lower() not in ("false", "0", "no")
+    if ratings_on and in_season and not full_season:
+        session = ratings_ingest._session()
+        ratings_sources = {
+            "torvik_ratings": (lambda: ratings_ingest.fetch_torvik(season, session), "barttorvik_team_results_csv"),
+            "net_rankings": (lambda: ratings_ingest.fetch_net(session), "ncaa_net_rankings"),
+        }
+        for key, (fetch, source) in ratings_sources.items():
+            try:
+                rows = fetch()
+            except Exception as e:
+                results[key] = {"error": f"fetch failed: {e}"}
+                continue
+            results[key] = land(key, rows, source, "snapshot")
+    else:
+        results["ratings"] = {"skipped": "off-season, season-range run, or ratings=false"}
+
+    for key, result in results.items():
+        if isinstance(result, dict) and "error" in result:
+            print(f"INGEST_ERROR key={key} {result['error']}")
 
     return (json.dumps(results), 200)
 

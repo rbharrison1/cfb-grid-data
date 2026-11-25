@@ -92,6 +92,49 @@ def read_rankings(client: bigquery.Client, table: str, season: int) -> List[dict
     return _rows(client, sql, [bigquery.ScalarQueryParameter("season", "INT64", season)])
 
 
+def _snapshot_rows(client: bigquery.Client, sql: str, season: int) -> List[dict]:
+    """Like _rows, plus each row's `snapshot_date` (ISO string) from column d."""
+    job_config = bigquery.QueryJobConfig(query_parameters=[bigquery.ScalarQueryParameter("season", "INT64", season)])
+    try:
+        result = client.query(sql, job_config=job_config).result()
+    except NotFound:
+        return []
+    return [{**json.loads(row["j"]), "snapshot_date": row["d"]} for row in result]
+
+
+# One snapshot per Eastern day: if a day has more than one ingest (a manual
+# re-run), keep its earliest, which is the one from before that day's games.
+_EARLIEST_PER_DAY = """
+    QUALIFY _ingested_at = MIN(_ingested_at) OVER (PARTITION BY DATE(_ingested_at, "America/New_York"))
+"""
+
+
+def read_torvik_snapshots(client: bigquery.Client, table: str, season: int) -> List[dict]:
+    """Every daily T-Rank snapshot of the season (see ratings_match.py)."""
+    sql = f"""
+        SELECT TO_JSON_STRING(t) AS j, CAST(DATE(_ingested_at, "America/New_York") AS STRING) AS d
+        FROM `{table}` t
+        WHERE _season = @season
+        {_EARLIEST_PER_DAY}
+    """
+    return _snapshot_rows(client, sql, season)
+
+
+def read_net_snapshots(client: bigquery.Client, table: str, season: int) -> List[dict]:
+    """Every daily NET snapshot of the season. Until the NCAA publishes the
+    season's first NET (usually early December), ncaa.com still serves the
+    previous season's final rankings; rows whose 'through games' date is
+    before this season's Nov 1 are those, and are dropped."""
+    sql = f"""
+        SELECT TO_JSON_STRING(t) AS j, CAST(DATE(_ingested_at, "America/New_York") AS STRING) AS d
+        FROM `{table}` t
+        WHERE _season = @season
+          AND SAFE_CAST(CAST(through_date AS STRING) AS DATE) >= DATE(@season - 1, 11, 1)
+        {_EARLIEST_PER_DAY}
+    """
+    return _snapshot_rows(client, sql, season)
+
+
 def read_teams(client: bigquery.Client, table: str, season: int) -> List[dict]:
     """The season's D1 team list (CBBD id, ESPN sourceId, school, color, conference)."""
     sql = f"""

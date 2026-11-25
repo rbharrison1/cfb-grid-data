@@ -86,11 +86,22 @@ def transform_and_load(request):
     except Exception as e:
         return (f"BigQuery read failed: {e}", 502)
 
+    # Ratings are an extra: if their tables can't be read, write the games
+    # without them rather than failing the whole transform.
+    ratings_error = None
+    try:
+        torvik_rows = bq_reader.read_torvik_snapshots(bq_client, table("torvik_ratings"), season)
+        net_rows = bq_reader.read_net_snapshots(bq_client, table("net_rankings"), season)
+    except Exception as e:
+        torvik_rows, net_rows, ratings_error = [], [], str(e)
+        print(f"TRANSFORM_ERROR ratings read failed: {e}")
+
     if not teams:
         return (f"No raw_teams rows for season {season} -- run the ingest with range=season (or teams=1) first.", 409)
 
     try:
-        docs_by_date, stats = cbb_transform.build_documents(games, media, teams, rankings, season_games)
+        docs_by_date, stats = cbb_transform.build_documents(
+            games, media, teams, rankings, season_games, torvik_rows, net_rows)
     except Exception as e:
         return (f"Transform failed: {e}", 500)
 
@@ -105,6 +116,8 @@ def transform_and_load(request):
         "end": end.isoformat(),
         "collection": collection,
         "games_read": len(games),
+        "ratings_snapshot_rows": {"torvik": len(torvik_rows), "net": len(net_rows)},
+        **({"ratings_error": ratings_error} if ratings_error else {}),
         **stats,
         "dates": written,
     }), 200)

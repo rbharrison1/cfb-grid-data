@@ -36,6 +36,7 @@ from config.networks import (
     NETWORK_COLUMNS, NETWORK_DISPLAY_MAPPINGS, STREAMING_COL,
 )
 from config.teams import TEAM_NAME_SUBSTITUTIONS, TEAM_COLORS
+from ratings_match import RatingsLookup
 from time_utils import adjust_datetime_for_timezone, get_time_window
 
 TIMEZONES = ['E', 'C', 'M', 'P', 'A', 'H']
@@ -236,7 +237,8 @@ def _points(game: dict, side: str):
 
 
 def format_game(game, slate_date, outlet, col, away, home, ranks, records, timezone, start_utc,
-                schedules: Optional['ScheduleIndex'] = None) -> Dict[str, Any]:
+                schedules: Optional['ScheduleIndex'] = None,
+                ratings: Optional[RatingsLookup] = None) -> Dict[str, Any]:
     if game.get('startTimeTbd'):
         # CBBD's TBD placeholder is midnight Eastern; converting it would put
         # the game on the previous day west of Eastern. Keep the slate date,
@@ -289,6 +291,11 @@ def format_game(game, slate_date, outlet, col, away, home, ranks, records, timez
         'notes': game.get('gameNotes'),
         'away_team_schedule': schedules.window(game.get('awayTeamId'), game['id']) if schedules else None,
         'home_team_schedule': schedules.window(game.get('homeTeamId'), game['id']) if schedules else None,
+        # T-Rank / NET as of this game's date (see ratings_match.py); the
+        # modal's Stats tab reads <side>_stats.
+        'away_stats': ratings.stats_for(game.get('awayTeamId'), slate_date) if ratings else None,
+        'home_stats': ratings.stats_for(game.get('homeTeamId'), slate_date) if ratings else None,
+        'ratings_as_of': ratings.as_of(slate_date) if ratings else None,
     }
 
 
@@ -319,14 +326,17 @@ def resolve_slot_conflicts(games: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return games
 
 
-def build_documents(games, media, cbbd_teams, rankings, season_games) -> Tuple[Dict[str, List[dict]], Dict[str, Any]]:
+def build_documents(games, media, cbbd_teams, rankings, season_games,
+                    torvik_rows=(), net_rows=()) -> Tuple[Dict[str, List[dict]], Dict[str, Any]]:
     """Returns ({slate_date 'YYYY-MM-DD': [docs for every timezone]}, stats).
     season_games is every game of the season (any status), for records and
-    schedule windows."""
+    schedule windows. torvik_rows / net_rows are the ratings snapshots from
+    bq_reader.read_torvik_snapshots / read_net_snapshots."""
     resolver = TeamResolver(cbbd_teams)
     records = build_records(season_games)
     schedules = ScheduleIndex(season_games, resolver)
     rank_lookup = RankLookup(rankings)
+    ratings = RatingsLookup(list(torvik_rows), list(net_rows), cbbd_teams)
     stats = Counter()
     unmapped_outlets = Counter()
 
@@ -347,7 +357,8 @@ def build_documents(games, media, cbbd_teams, rankings, season_games) -> Tuple[D
         ranks = rank_lookup.ranks_on(slate_date)
         stats['games'] += 1
         for tz in TIMEZONES:
-            per_tz[tz].append(format_game(game, slate_date, outlet, col, away, home, ranks, records, tz, start_utc, schedules))
+            per_tz[tz].append(format_game(game, slate_date, outlet, col, away, home, ranks, records, tz, start_utc,
+                                          schedules, ratings))
 
     by_slate_date = defaultdict(list)
     for tz_games in per_tz.values():
@@ -357,4 +368,5 @@ def build_documents(games, media, cbbd_teams, rankings, season_games) -> Tuple[D
     stats_out = dict(stats)
     stats_out['unmapped_outlets'] = dict(unmapped_outlets)
     stats_out['teams_without_id'] = dict(resolver.unknown)
+    stats_out['ratings_unmatched'] = ratings.unmatched()
     return dict(by_slate_date), stats_out
