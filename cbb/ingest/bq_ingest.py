@@ -278,8 +278,11 @@ def bq_ingest(request):
     ratings_on = str(_param("ratings", "true")).strip().lower() not in ("false", "0", "no")
     if ratings_on and in_season and not full_season:
         session = ratings_ingest._session()
+        # No direct barttorvik.com request: the site returns 403 to Cloud Run
+        # (first seen 2026-11-25), which reads as a deliberate block on
+        # server traffic, so it isn't retried or worked around. T-Rank is
+        # moving to the cbbdata API instead.
         ratings_sources = {
-            "torvik_ratings": (lambda: ratings_ingest.fetch_torvik(season, session), "barttorvik_team_results_csv"),
             "net_rankings": (lambda: ratings_ingest.fetch_net(session), "ncaa_net_rankings"),
         }
         for key, (fetch, source) in ratings_sources.items():
